@@ -1570,7 +1570,7 @@
     </Placemark>
 
     <Placemark>
-      <name>Botosani</name>
+      <name>Botoşani</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#7</styleUrl>
       <visibility>1</visibility>
@@ -1857,7 +1857,7 @@
     </Placemark>
 
     <Placemark>
-      <name>Braila</name>
+      <name>Brăila</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#8</styleUrl>
       <visibility>1</visibility>
@@ -2404,7 +2404,7 @@
     </Placemark>
 
     <Placemark>
-      <name>Calarasi</name>
+      <name>Călăraşi</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#12</styleUrl>
       <visibility>1</visibility>
@@ -2635,7 +2635,7 @@
     </Placemark>
 
     <Placemark>
-      <name>Caras-Severin</name>
+      <name>Caraş-Severin</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#13</styleUrl>
       <visibility>1</visibility>
@@ -2975,7 +2975,7 @@
     </Placemark>
 
     <Placemark>
-      <name>Constanta</name>
+      <name>Constanţa</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#15</styleUrl>
       <visibility>1</visibility>
@@ -3480,7 +3480,7 @@
     </Placemark>
 
     <Placemark>
-      <name>D�mbovita</name>
+      <name>Dâmbovita</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#17</styleUrl>
       <visibility>1</visibility>
@@ -4693,7 +4693,7 @@
     </Placemark>
 
     <Placemark>
-      <name>Ialomita</name>
+      <name>Ialomiţa</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#24</styleUrl>
       <visibility>1</visibility>
@@ -4853,7 +4853,7 @@
     </Placemark>
 
     <Placemark>
-      <name>Iasi</name>
+      <name>Iaşi</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#25</styleUrl>
       <visibility>1</visibility>
@@ -5200,7 +5200,7 @@
     </Placemark>
 
     <Placemark>
-      <name>Maramures</name>
+      <name>Maramureş</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#26</styleUrl>
       <visibility>1</visibility>
@@ -5426,7 +5426,7 @@
     </Placemark>
 
     <Placemark>
-      <name>Mehedinti</name>
+      <name>Mehedinţi</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#27</styleUrl>
       <visibility>1</visibility>
@@ -5672,7 +5672,7 @@
     </Placemark>
 
     <Placemark>
-      <name>Mures</name>
+      <name>Mureş</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#28</styleUrl>
       <visibility>1</visibility>
@@ -5830,7 +5830,7 @@
     </Placemark>
 
     <Placemark>
-      <name>Neamt</name>
+      <name>Neamţ</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#29</styleUrl>
       <visibility>1</visibility>
@@ -7183,7 +7183,7 @@
     </Placemark>
 
     <Placemark>
-      <name>Timis</name>
+      <name>Timiş</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#37</styleUrl>
       <visibility>1</visibility>
@@ -7896,7 +7896,7 @@
     </Placemark>
 
     <Placemark>
-      <name>V�lcea</name>
+      <name>Vâlcea</name>
       <description><![CDATA[Judet]]></description>
       <styleUrl>#39</styleUrl>
       <visibility>1</visibility>
