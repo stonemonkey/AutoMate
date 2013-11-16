@@ -1,0 +1,15 @@
+﻿<Application
+    x:Class="Ui.Wp8.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:wp8="clr-namespace:Ui.Wp8">
+
+    <!--Application Resources-->
+    <Application.Resources>
+        <wp8:Bootstrapper x:Key="Bootstrapper"/>
+    </Application.Resources>
+
+    <Application.ApplicationLifetimeObjects>
+        <!--Required object that handles lifetime events for the application-->
+    </Application.ApplicationLifetimeObjects>
+</Application>
