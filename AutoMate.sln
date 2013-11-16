@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui.Wp8", "Ui.Wp8\Ui.Wp8.csproj", "{60AA88D5-8659-4680-907B-55D9445D2B8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj", "{5BBFF3EA-F383-44E1-B6DF-83FC267A6DB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui.Web", "WebUI\Ui.Web.csproj", "{5BBFF3EA-F383-44E1-B6DF-83FC267A6DB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
