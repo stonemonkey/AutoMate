@@ -1,22 +1,27 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Sensors;
+using Ui.Wp8.Infrastructure;
 
-namespace Ui.Wp8.Infrastructure
+namespace Ui.Wp8.Components.RecordingPage
 {
-    public class AccelerationDataAquisition: IDataAquisition
+    public class AccelerationViewModel : Screen, IDataAquisition
     {
+        Accelerometer _accelerometer; 
         IAgresivityCalculator _calculator;
-        Accelerometer _accelerometer;
 
-        public AccelerationDataAquisition(IAgresivityCalculator calculator, uint reportInterval)
+        public uint ReportInterval { get; set; }
+
+        public AccelerationViewModel(AgresivityCalculator calculator)
         {
+            ReportInterval = 5;
             _calculator = calculator;
             _accelerometer = Accelerometer.GetDefault();
-            _accelerometer.ReportInterval = reportInterval;
+            _accelerometer.ReportInterval = ReportInterval;
         }
 
         void _accelerometer_ReadingChanged(Accelerometer sender, AccelerometerReadingChangedEventArgs e)

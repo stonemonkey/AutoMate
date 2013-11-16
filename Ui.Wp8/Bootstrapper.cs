@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Caliburn.Micro;
 using Ui.Wp8.Components.MainPage;
 using Ui.Wp8.Components.RecordingPage;
+using Ui.Wp8.Infrastructure;
 
 namespace Ui.Wp8
 {
@@ -17,6 +18,9 @@ namespace Ui.Wp8
             _container.RegisterPhoneServices(RootFrame);
             _container.PerRequest<MainPageViewModel>();
             _container.PerRequest<RecordingPageViewModel>();
+            _container.PerRequest<AgresivityCalculator>();
+            _container.PerRequest<AccelerationViewModel>();
+            _container.PerRequest<GpsDataViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)

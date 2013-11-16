@@ -99,6 +99,13 @@
     </Compile>
     <Compile Include="Components\MainPage\MainPageViewModel.cs" />
     <Compile Include="Components\PageViewModelBase.cs" />
+    <Compile Include="Components\RecordingPage\GpsDataViewModel.cs" />
+    <Compile Include="Components\RecordingPage\GpsDataView.xaml.cs">
+      <DependentUpon>GpsDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\RecordingPage\AccelerationView.xaml.cs">
+      <DependentUpon>AccelerationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\RecordingPage\RecordingPageResources.Designer.cs">
       <DependentUpon>RecordingPageResources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -110,10 +117,9 @@
     </Compile>
     <Compile Include="Components\RecordingPage\RecordingPageViewModel.cs" />
     <Compile Include="Infrastructure\Acceleration.cs" />
-    <Compile Include="Infrastructure\AccelerationDataAquisition.cs" />
+    <Compile Include="Components\RecordingPage\AccelerationViewModel.cs" />
     <Compile Include="Infrastructure\AgresivityCalculator.cs" />
     <Compile Include="Infrastructure\GpsData.cs" />
-    <Compile Include="Infrastructure\GpsDataAquisition.cs" />
     <Compile Include="Infrastructure\IAgresivityCalculator.cs" />
     <Compile Include="Infrastructure\IDataAquisition.cs" />
     <Compile Include="GlobalResources.Designer.cs">
@@ -136,6 +142,14 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Components\MainPage\MainPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\RecordingPage\GpsDataView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\RecordingPage\AccelerationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
