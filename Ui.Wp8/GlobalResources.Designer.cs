@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Ui.Wp8.Components.MainPage {
+namespace Ui.Wp8 {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace Ui.Wp8.Components.MainPage {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class MainPageResources {
+    public class GlobalResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal MainPageResources() {
+        internal GlobalResources() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Ui.Wp8.Components.MainPage {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Ui.Wp8.Components.MainPage.MainPageResources", typeof(MainPageResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Ui.Wp8.GlobalResources", typeof(GlobalResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,29 +61,29 @@ namespace Ui.Wp8.Components.MainPage {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start.
+        ///   Looks up a localized string similar to AutoMate.
         /// </summary>
-        public static string AppBarButtonStartText {
+        public static string ApplicationTitle {
             get {
-                return ResourceManager.GetString("AppBarButtonStartText", resourceCulture);
+                return ResourceManager.GetString("ApplicationTitle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Start.
+        ///   Looks up a localized string similar to LeftToRight.
         /// </summary>
-        public static string AppBarMenuItemStartText {
+        public static string ResourceFlowDirection {
             get {
-                return ResourceManager.GetString("AppBarMenuItemStartText", resourceCulture);
+                return ResourceManager.GetString("ResourceFlowDirection", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dashboard.
+        ///   Looks up a localized string similar to en-US.
         /// </summary>
-        public static string PageName {
+        public static string ResourceLanguage {
             get {
-                return ResourceManager.GetString("PageName", resourceCulture);
+                return ResourceManager.GetString("ResourceLanguage", resourceCulture);
             }
         }
     }

@@ -1,13 +1,19 @@
-﻿using System.Windows;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
+using Ui.Wp8.Components.RecordingPage;
 
 namespace Ui.Wp8.Components.MainPage
 {
-    public class MainPageViewModel : PropertyChangedBase
+    public class MainPageViewModel : PageViewModelBase
     {
+        public MainPageViewModel(INavigationService navigationService)
+            : base(navigationService)
+        {
+        }
+
         public void Start()
         {
-            MessageBox.Show("Under construction!");
+            NavigationService.UriFor<RecordingPageViewModel>()
+                .Navigate();
         }
     }
 }

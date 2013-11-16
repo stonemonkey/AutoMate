@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Controls;
 using Caliburn.Micro;
-using Microsoft.Phone.Shell;
 using Ui.Wp8.Components.MainPage;
+using Ui.Wp8.Components.RecordingPage;
 
 namespace Ui.Wp8
 {
@@ -17,6 +16,7 @@ namespace Ui.Wp8
 
             _container.RegisterPhoneServices(RootFrame);
             _container.PerRequest<MainPageViewModel>();
+            _container.PerRequest<RecordingPageViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)

@@ -98,6 +98,17 @@
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\MainPage\MainPageViewModel.cs" />
+    <Compile Include="Components\PageViewModelBase.cs" />
+    <Compile Include="Components\RecordingPage\RecordingPageResources.Designer.cs">
+      <DependentUpon>RecordingPageResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Components\RecordingPage\RecordingPageStrings.cs" />
+    <Compile Include="Components\RecordingPage\RecordingPageView.xaml.cs">
+      <DependentUpon>RecordingPageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\RecordingPage\RecordingPageViewModel.cs" />
     <Compile Include="Infrastructure\Acceleration.cs" />
     <Compile Include="Infrastructure\AccelerationDataAquisition.cs" />
     <Compile Include="Infrastructure\AgresivityCalculator.cs" />
@@ -105,6 +116,12 @@
     <Compile Include="Infrastructure\GpsDataAquisition.cs" />
     <Compile Include="Infrastructure\IAgresivityCalculator.cs" />
     <Compile Include="Infrastructure\IDataAquisition.cs" />
+    <Compile Include="GlobalResources.Designer.cs">
+      <DependentUpon>GlobalResources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="GlobalStrings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\MainPage\MainPageResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -120,6 +137,10 @@
     <Page Include="Components\MainPage\MainPageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\RecordingPage\RecordingPageView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +251,16 @@
       <LastGenOutput>MainPageResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\MainPage\MainPageResources.ro.resx" />
+    <EmbeddedResource Include="Components\RecordingPage\RecordingPageResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RecordingPageResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Components\RecordingPage\RecordingPageResources.ro.resx" />
+    <EmbeddedResource Include="GlobalResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GlobalResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GlobalResources.ro.resx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro, Version=1.5.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -244,9 +275,7 @@
       <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\wp8\System.Windows.Interactivity.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\RecordingPage\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
