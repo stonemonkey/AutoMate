@@ -49,7 +49,7 @@
 
         <StackPanel Grid.Row="1">
             <ContentControl x:Name="UserContext"/>
-            <TextBox Text="Driving aggresivity rate: 6" Background="Black" Foreground="Azure"/>
+            <ContentControl x:Name="Statistics"/>
         </StackPanel>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
