@@ -10,8 +10,8 @@ namespace Ui.Wp8.Infrastructure
 {
     public class TileUpdater
     {
-        private const Uri RegularIcon = new Uri("SteeringWheel.png", UriKind.Relative);
-        private const Uri WarningIcon = new Uri("SteeringWheel.png", UriKind.Relative);
+        private readonly Uri RegularIcon = new Uri("SteeringWheel.png", UriKind.Relative);
+        private readonly Uri WarningIcon = new Uri("SteeringWheel.png", UriKind.Relative);
 
         public void SetGood()
         {
