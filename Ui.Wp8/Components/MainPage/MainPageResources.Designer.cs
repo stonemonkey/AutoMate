@@ -61,11 +61,11 @@ namespace Ui.Wp8.Components.MainPage {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add.
+        ///   Looks up a localized string similar to Start.
         /// </summary>
-        public static string AppBarButtonText {
+        public static string AppBarButtonStartText {
             get {
-                return ResourceManager.GetString("AppBarButtonText", resourceCulture);
+                return ResourceManager.GetString("AppBarButtonStartText", resourceCulture);
             }
         }
         
@@ -84,6 +84,15 @@ namespace Ui.Wp8.Components.MainPage {
         public static string ApplicationTitle {
             get {
                 return ResourceManager.GetString("ApplicationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        public static string PageName {
+            get {
+                return ResourceManager.GetString("PageName", resourceCulture);
             }
         }
         

@@ -126,12 +126,15 @@
     <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
-    <value>AutoMate ro</value>
+    <value>AutoMate</value>
   </data>
-  <data name="AppBarButtonText" xml:space="preserve">
-    <value>add</value>
+  <data name="AppBarButtonStartText" xml:space="preserve">
+    <value>Incepe</value>
   </data>
   <data name="AppBarMenuItemText" xml:space="preserve">
-    <value>Menu Item</value>
+    <value>Element Meniu</value>
+  </data>
+  <data name="PageName" xml:space="preserve">
+    <value>Tablou de comanda</value>
   </data>
 </root>

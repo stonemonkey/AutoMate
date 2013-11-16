@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Controls;
 using Caliburn.Micro;
+using Microsoft.Phone.Shell;
 using Ui.Wp8.Components.MainPage;
 
 namespace Ui.Wp8
