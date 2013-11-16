@@ -93,11 +93,15 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Components\MainPage\UserContextViewModel.cs" />
     <Compile Include="Components\MainPage\MainPageStrings.cs" />
     <Compile Include="Components\MainPage\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\MainPage\MainPageViewModel.cs" />
+    <Compile Include="Components\MainPage\UserContextView.xaml.cs">
+      <DependentUpon>UserContextView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\PageViewModelBase.cs" />
     <Compile Include="Components\RecordingPage\RecordingPageResources.Designer.cs">
       <DependentUpon>RecordingPageResources.resx</DependentUpon>
@@ -136,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Components\MainPage\MainPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\MainPage\UserContextView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
