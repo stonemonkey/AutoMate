@@ -98,6 +98,10 @@
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\MainPage\MainPageViewModel.cs" />
+    <Compile Include="Infrastructure\Acceleration.cs" />
+    <Compile Include="Infrastructure\GpsData.cs" />
+    <Compile Include="Infrastructure\IAgresivityCalculator.cs" />
+    <Compile Include="Infrastructure\IDataAquisition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\MainPage\MainPageResources.Designer.cs">
       <AutoGen>True</AutoGen>

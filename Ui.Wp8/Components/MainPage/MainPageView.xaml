@@ -35,9 +35,26 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0">
+            <!--<Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
             <StackPanel>
                 <Button x:Name="ShowName" Content="Click me"/>
                 <CheckBox x:Name="IsEnabled" Content="IsEnabled"/>
+            </StackPanel>-->
+            <StackPanel>
+                <StackPanel HorizontalAlignment="Stretch">
+                    <Button Content="Start" Height="72" HorizontalAlignment="Left" Name="startButton" VerticalAlignment="Top" Width="160" Click="startButton_Click" />
+                    <Button Content="Stop" Height="72" HorizontalAlignment="Right" Name="stopButton" VerticalAlignment="Top" Width="160" Click="stopButton_Click"/>
+                </StackPanel>
+                <TextBlock Height="30" HorizontalAlignment="Left"  Margin="20,100,0,0" Name="xTextBlock" Text="X: 1.0" VerticalAlignment="Top" Foreground="Red" FontSize="28" FontWeight="Bold"/>
+                <TextBlock Height="30" HorizontalAlignment="Center"  Margin="0,100,0,0" Name="yTextBlock" Text="Y: 1.0" VerticalAlignment="Top" Foreground="Green" FontSize="28" FontWeight="Bold"/>
+                <TextBlock Height="30" HorizontalAlignment="Right"  Margin="0,100,20,0" Name="zTextBlock" Text="Z: 1.0" VerticalAlignment="Top"  Foreground="Blue" FontSize="28" FontWeight="Bold"/>
+                <Line x:Name="xLine" X1="240" Y1="350" X2="340" Y2="350" Stroke="Red" StrokeThickness="4"></Line>
+                <Line x:Name="yLine" X1="240" Y1="350" X2="240" Y2="270" Stroke="Green" StrokeThickness="4"></Line>
+                <Line x:Name="zLine" X1="240" Y1="350" X2="190" Y2="400" Stroke="Blue" StrokeThickness="4"></Line>
+                <TextBlock Height="30" HorizontalAlignment="Center" Margin="6,571,6,0" Name="statusTextBlock" Text="TextBlock" VerticalAlignment="Top" Width="444" />
             </StackPanel>
         </Grid>
 
