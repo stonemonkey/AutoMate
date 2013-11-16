@@ -8,5 +8,10 @@ namespace Ui.Wp8.Components.RecordingPage
             : base(navigationService)
         {
         }
+
+        public void Stop()
+        {
+            
+        }
     }
 }
