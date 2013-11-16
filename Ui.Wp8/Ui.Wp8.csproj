@@ -105,6 +105,7 @@
     <Compile Include="Infrastructure\GpsDataAquisition.cs" />
     <Compile Include="Infrastructure\IAgresivityCalculator.cs" />
     <Compile Include="Infrastructure\IDataAquisition.cs" />
+    <Compile Include="Infrastructure\TileUpdater.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\MainPage\MainPageResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -131,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AlignmentGrid.png" />
+    <Content Include="Assets\AppIcon.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -208,21 +210,7 @@
     <Content Include="Assets\Icons\Light\transport.play.png" />
     <Content Include="Assets\Icons\Light\transport.rew.png" />
     <Content Include="Assets\Icons\Light\upload.png" />
-    <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Tiles\FlipCycleTileMedium.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Tiles\FlipCycleTileSmall.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Tiles\IconicTileMediumLarge.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Tiles\IconicTileSmall.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Assets\Tiles\SteeringWheel.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Components\MainPage\MainPageResources.resx">

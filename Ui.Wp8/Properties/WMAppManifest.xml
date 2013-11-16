@@ -5,8 +5,8 @@
     <Language code="en" />
     <Language code="ro" />
   </Languages>
-  <App xmlns="" ProductID="{60aa88d5-8659-4680-907b-55d9445d2b8e}" Title="TrackMyTrails" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="stonemonkey77ro author" Description="Design to record and track walking, running and cycling activities. " Publisher="stonemonkey77ro" PublisherID="{58519517-d8a9-4762-b6c9-d104bfec84ee}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+  <App xmlns="" ProductID="{60aa88d5-8659-4680-907b-55d9445d2b8e}" Title="AutoMate" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="stonemonkey77ro author" Description="Designed to record and track driving skills. " Publisher="stonemonkey77ro" PublisherID="{58519517-d8a9-4762-b6c9-d104bfec84ee}">
+    <IconPath IsRelative="true" IsResource="false">Assets\AppIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_MEDIALIB_AUDIO" />
@@ -19,22 +19,26 @@
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="TrackMyTrailsToken" TaskName="_default">
-        <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
+        <TemplateIconic>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\SteeringWheel.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>TrackMyTrails</Title>
-          <BackContent>
-          </BackContent>
-          <BackBackgroundImageURI>
-          </BackBackgroundImageURI>
-          <BackTitle>
-          </BackTitle>
-          <DeviceLockImageURI>
+          <IconImageURI IsRelative="true" IsResource="false">Assets\Tiles\SteeringWheel.png</IconImageURI>
+          <Title>
+          </Title>
+          <Message>
+          </Message>
+          <BackgroundColor>
+          </BackgroundColor>
+          <HasLarge>True</HasLarge>
+          <LargeContent1>
+          </LargeContent1>
+          <LargeContent2>
+          </LargeContent2>
+          <LargeContent3>
+          </LargeContent3>
+          <DeviceLockImageURI IsRelative="true" IsResource="false">
           </DeviceLockImageURI>
-          <HasLarge>
-          </HasLarge>
-        </TemplateFlip>
+        </TemplateIconic>
       </PrimaryToken>
     </Tokens>
     <ScreenResolutions>
