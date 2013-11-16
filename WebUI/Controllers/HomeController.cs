@@ -1,13 +1,15 @@
-﻿using System;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
-using System.Xml;
 using System.Xml.Linq;
+using Dto;
+using WebUI.Models;
 
 namespace WebUI.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             return View();
@@ -17,34 +19,44 @@ namespace WebUI.Controllers
         {
             return new XmlActionResult(XDocument.Load(Server.MapPath("~/Data/ro.kml")));
         }
-    }
 
-    public sealed class XmlActionResult : ActionResult
-    {
-        private readonly XDocument _document;
-
-        public Formatting Formatting { get; set; }
-        public string MimeType { get; set; }
-
-        public XmlActionResult(XDocument document)
+        public ActionResult GetLocationAgresivtyRates()
         {
-            if (document == null)
-                throw new ArgumentNullException("document");
+            var agresivityRatesByDistrict = GetDistrictAgresivityRates();
 
-            _document = document;
-
-            // Default values
-            MimeType = "text/xml";
-            Formatting = Formatting.None;
+            return Json(agresivityRatesByDistrict, JsonRequestBehavior.AllowGet);
         }
 
-        public override void ExecuteResult(ControllerContext context)
+        private List<ClientStatistics> GetDistrictAgresivityRates()
         {
-            context.HttpContext.Response.Clear();
-            context.HttpContext.Response.ContentType = MimeType;
+            //TODO - This info will be taken from DB 
+            var agresivityRates = new List<ClientStatistics>
+                {
+                    new ClientStatistics {Location = "Sibiu", AgresivityRate = 70},
+                    new ClientStatistics {Location = "Fagaras", AgresivityRate = 70},
+                    new ClientStatistics {Location = "Arad", AgresivityRate = 70},
+                    new ClientStatistics {Location = "Satu Mare", AgresivityRate = 6},
+                    new ClientStatistics {Location = "Timisoara", AgresivityRate = 90},
+                    new ClientStatistics {Location = "Cluj - Napoca", AgresivityRate = 26},
+                    new ClientStatistics {Location = "Constanta", AgresivityRate = 100}
+                };
 
-            using (var writer = new XmlTextWriter(context.HttpContext.Response.OutputStream, Encoding.UTF8) { Formatting = Formatting })
-                _document.WriteTo(writer);
+            var agresivityRatesByDistrict = (from clientStatisticse in agresivityRates
+                                             let districtName =
+                                                 Location2County.GetLocationAdminDistrictName(clientStatisticse.Location)
+                                             where !string.IsNullOrEmpty(districtName)
+                                             select new ClientStatistics
+                                                 {
+                                                     AgresivityRate = clientStatisticse.AgresivityRate,
+                                                     Location = districtName
+                                                 }).ToList();
+            return agresivityRatesByDistrict;
+        }
+
+
+        public string BingMapsAuthenticationKey()
+        {
+            return Configuration.BingMapsAuthenticationKey;
         }
     }
 }
