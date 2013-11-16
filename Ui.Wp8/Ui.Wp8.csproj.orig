@@ -116,13 +116,16 @@
     <Compile Include="Infrastructure\GpsDataAquisition.cs" />
     <Compile Include="Infrastructure\IAgresivityCalculator.cs" />
     <Compile Include="Infrastructure\IDataAquisition.cs" />
+<<<<<<< HEAD
     <Compile Include="GlobalResources.Designer.cs">
-    <Compile Include="Infrastructure\TileUpdater.cs" />
       <DependentUpon>GlobalResources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="GlobalStrings.cs" />
+=======
+    <Compile Include="Infrastructure\TileUpdater.cs" />
+>>>>>>> 3bdfa8085cb20a40f1016a3e8a93fe0271314ec7
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\MainPage\MainPageResources.Designer.cs">
       <AutoGen>True</AutoGen>
