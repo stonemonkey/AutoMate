@@ -21,6 +21,7 @@ namespace Ui.Wp8
             _container.PerRequest<AgresivityCalculator>();
             _container.PerRequest<AccelerationViewModel>();
             _container.PerRequest<GpsDataViewModel>();
+            _container.PerRequest<UserContextViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)

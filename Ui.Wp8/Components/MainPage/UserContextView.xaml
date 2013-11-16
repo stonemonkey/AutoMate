@@ -10,6 +10,9 @@
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
-
+        <StackPanel>
+            <TextBox Text="Location: Sibiu" Background="Black" Foreground="Azure"/>
+            <TextBox Text="Name: Costin Morariu" Background="Black" Foreground="Azure"/>
+        </StackPanel>
     </Grid>
 </UserControl>
