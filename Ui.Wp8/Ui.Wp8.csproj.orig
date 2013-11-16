@@ -93,12 +93,23 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Components\MainPage\UserContextViewModel.cs" />
     <Compile Include="Components\MainPage\MainPageStrings.cs" />
     <Compile Include="Components\MainPage\MainPageView.xaml.cs">
       <DependentUpon>MainPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\MainPage\MainPageViewModel.cs" />
+    <Compile Include="Components\MainPage\UserContextView.xaml.cs">
+      <DependentUpon>UserContextView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\PageViewModelBase.cs" />
+    <Compile Include="Components\RecordingPage\GpsDataViewModel.cs" />
+    <Compile Include="Components\RecordingPage\GpsDataView.xaml.cs">
+      <DependentUpon>GpsDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\RecordingPage\AccelerationView.xaml.cs">
+      <DependentUpon>AccelerationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\RecordingPage\RecordingPageResources.Designer.cs">
       <DependentUpon>RecordingPageResources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -110,22 +121,18 @@
     </Compile>
     <Compile Include="Components\RecordingPage\RecordingPageViewModel.cs" />
     <Compile Include="Infrastructure\Acceleration.cs" />
-    <Compile Include="Infrastructure\AccelerationDataAquisition.cs" />
+    <Compile Include="Components\RecordingPage\AccelerationViewModel.cs" />
     <Compile Include="Infrastructure\AgresivityCalculator.cs" />
     <Compile Include="Infrastructure\GpsData.cs" />
-    <Compile Include="Infrastructure\GpsDataAquisition.cs" />
     <Compile Include="Infrastructure\IAgresivityCalculator.cs" />
     <Compile Include="Infrastructure\IDataAquisition.cs" />
-<<<<<<< HEAD
     <Compile Include="GlobalResources.Designer.cs">
       <DependentUpon>GlobalResources.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="GlobalStrings.cs" />
-=======
     <Compile Include="Infrastructure\TileUpdater.cs" />
->>>>>>> 3bdfa8085cb20a40f1016a3e8a93fe0271314ec7
+    <Compile Include="GlobalStrings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Components\MainPage\MainPageResources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -139,6 +146,18 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="Components\MainPage\MainPageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+<<<<<<< HEAD
+    <Page Include="Components\MainPage\UserContextView.xaml">
+=======
+    <Page Include="Components\RecordingPage\GpsDataView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Components\RecordingPage\AccelerationView.xaml">
+>>>>>>> 2f2111fdb6826c3efb279b7393c2ca46a09db5db
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
