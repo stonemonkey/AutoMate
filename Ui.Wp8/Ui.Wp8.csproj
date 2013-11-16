@@ -131,6 +131,80 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Icons\Dark\add.png" />
+    <Content Include="Assets\Icons\Dark\back.png" />
+    <Content Include="Assets\Icons\Dark\basecircle.png" />
+    <Content Include="Assets\Icons\Dark\cancel.png" />
+    <Content Include="Assets\Icons\Dark\check.png" />
+    <Content Include="Assets\Icons\Dark\close.png" />
+    <Content Include="Assets\Icons\Dark\delete.png" />
+    <Content Include="Assets\Icons\Dark\download.png" />
+    <Content Include="Assets\Icons\Dark\edit.png" />
+    <Content Include="Assets\Icons\Dark\favs.addto.png" />
+    <Content Include="Assets\Icons\Dark\favs.png" />
+    <Content Include="Assets\Icons\Dark\feature.alarm.png" />
+    <Content Include="Assets\Icons\Dark\feature.calendar.png" />
+    <Content Include="Assets\Icons\Dark\feature.camera.png" />
+    <Content Include="Assets\Icons\Dark\feature.email.png" />
+    <Content Include="Assets\Icons\Dark\feature.phone.png" />
+    <Content Include="Assets\Icons\Dark\feature.search.png" />
+    <Content Include="Assets\Icons\Dark\feature.settings.png" />
+    <Content Include="Assets\Icons\Dark\feature.video.png" />
+    <Content Include="Assets\Icons\Dark\folder.png" />
+    <Content Include="Assets\Icons\Dark\like.png" />
+    <Content Include="Assets\Icons\Dark\microphone.png" />
+    <Content Include="Assets\Icons\Dark\minus.png" />
+    <Content Include="Assets\Icons\Dark\new.png" />
+    <Content Include="Assets\Icons\Dark\next.png" />
+    <Content Include="Assets\Icons\Dark\overflowdots.png" />
+    <Content Include="Assets\Icons\Dark\questionmark.png" />
+    <Content Include="Assets\Icons\Dark\refresh.png" />
+    <Content Include="Assets\Icons\Dark\save.png" />
+    <Content Include="Assets\Icons\Dark\share.png" />
+    <Content Include="Assets\Icons\Dark\stop.png" />
+    <Content Include="Assets\Icons\Dark\sync.png" />
+    <Content Include="Assets\Icons\Dark\transport.ff.png" />
+    <Content Include="Assets\Icons\Dark\transport.pause.png" />
+    <Content Include="Assets\Icons\Dark\transport.play.png" />
+    <Content Include="Assets\Icons\Dark\transport.rew.png" />
+    <Content Include="Assets\Icons\Dark\upload.png" />
+    <Content Include="Assets\Icons\Light\add.png" />
+    <Content Include="Assets\Icons\Light\back.png" />
+    <Content Include="Assets\Icons\Light\basecircle.png" />
+    <Content Include="Assets\Icons\Light\cancel.png" />
+    <Content Include="Assets\Icons\Light\check.png" />
+    <Content Include="Assets\Icons\Light\close.png" />
+    <Content Include="Assets\Icons\Light\delete.png" />
+    <Content Include="Assets\Icons\Light\download.png" />
+    <Content Include="Assets\Icons\Light\edit.png" />
+    <Content Include="Assets\Icons\Light\favs.addto.png" />
+    <Content Include="Assets\Icons\Light\favs.png" />
+    <Content Include="Assets\Icons\Light\feature.alarm.png" />
+    <Content Include="Assets\Icons\Light\feature.calendar.png" />
+    <Content Include="Assets\Icons\Light\feature.camera.png" />
+    <Content Include="Assets\Icons\Light\feature.email.png" />
+    <Content Include="Assets\Icons\Light\feature.phone.png" />
+    <Content Include="Assets\Icons\Light\feature.search.png" />
+    <Content Include="Assets\Icons\Light\feature.settings.png" />
+    <Content Include="Assets\Icons\Light\feature.video.png" />
+    <Content Include="Assets\Icons\Light\folder.png" />
+    <Content Include="Assets\Icons\Light\like.png" />
+    <Content Include="Assets\Icons\Light\microphone.png" />
+    <Content Include="Assets\Icons\Light\minus.png" />
+    <Content Include="Assets\Icons\Light\new.png" />
+    <Content Include="Assets\Icons\Light\next.png" />
+    <Content Include="Assets\Icons\Light\overflowdots.png" />
+    <Content Include="Assets\Icons\Light\questionmark.png" />
+    <Content Include="Assets\Icons\Light\refresh.png" />
+    <Content Include="Assets\Icons\Light\save.png" />
+    <Content Include="Assets\Icons\Light\share.png" />
+    <Content Include="Assets\Icons\Light\stop.png" />
+    <Content Include="Assets\Icons\Light\sync.png" />
+    <Content Include="Assets\Icons\Light\transport.ff.png" />
+    <Content Include="Assets\Icons\Light\transport.pause.png" />
+    <Content Include="Assets\Icons\Light\transport.play.png" />
+    <Content Include="Assets\Icons\Light\transport.rew.png" />
+    <Content Include="Assets\Icons\Light\upload.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -168,6 +242,7 @@
       <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\wp8\System.Windows.Interactivity.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
