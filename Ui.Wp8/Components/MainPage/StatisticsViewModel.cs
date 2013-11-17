@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using System.Threading.Tasks;
+using Caliburn.Micro;
 using Dto;
 using Ui.Wp8.Infrastructure;
 
@@ -37,8 +38,6 @@ namespace Ui.Wp8.Components.MainPage
         {   
             _statisticsRepository = statisticsRepository;
             _userContext = userContext;
-
-            Data = Load();
         }
 
         public void MarkAsSent()
@@ -46,9 +45,9 @@ namespace Ui.Wp8.Components.MainPage
             IsUnsent = false;
         }
 
-        private ClientStatistics Load()
+        public async Task Initialize()
         {
-            return _statisticsRepository.Fetch(_userContext.Email);
+            Data = await _statisticsRepository.Fetch(_userContext.Email);
         }
     }
 }

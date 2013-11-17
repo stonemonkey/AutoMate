@@ -45,6 +45,8 @@ namespace Ui.Wp8.Components.MainPage
         {
             base.OnActivate();
 
+            await _statistics.Initialize();
+
             if (_statistics.IsUnsent && IsNetworkAvailable())
             {
                 await TryUpdateStatistics();
