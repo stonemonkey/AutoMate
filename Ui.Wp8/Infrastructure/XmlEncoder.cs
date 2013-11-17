@@ -13,12 +13,12 @@ namespace Ui.Wp8.Infrastructure
 
         public string Encode(ClientStatistics clientStatistics)
         {
-            var stream = new StringWriter();
+            var writer = new StringWriter();
             var serializer = new XmlSerializer(typeof(ClientStatistics));
 
-            serializer.Serialize(stream, clientStatistics);
+            serializer.Serialize(writer, clientStatistics);
 
-            return stream.ToString();
+            return writer.ToString();
         }
     }
 }
