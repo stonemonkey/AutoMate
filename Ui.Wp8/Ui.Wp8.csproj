@@ -106,6 +106,7 @@
     <Compile Include="Components\MainPage\UserContextView.xaml.cs">
       <DependentUpon>UserContextView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\DbProvider.cs" />
     <Compile Include="Infrastructure\IClientStatisticsEncoder.cs" />
     <Compile Include="Infrastructure\JsonEncoder.cs" />
     <Compile Include="Infrastructure\StatisticsRepository.cs" />
