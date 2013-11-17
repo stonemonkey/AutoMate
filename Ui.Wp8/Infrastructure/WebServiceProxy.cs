@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using Dto;
+using System.IO;
 
 namespace Ui.Wp8.Infrastructure
 {
@@ -21,11 +22,15 @@ namespace Ui.Wp8.Infrastructure
         {
             try
             {
-                var data = _encoder.Encode(clientStatistics);
+                using (var stream = new MemoryStream())
+                {
+                    var data = _encoder.Encode(clientStatistics, stream);
+                    var streamReader = new StreamReader(stream);
 
-                var client = new WebClient();
-                client.Headers[HttpRequestHeader.ContentType] = _encoder.ContentType;
-                return await client.UploadStringTaskAsync(new Uri(_uri), "POST", data);
+                    var client = new WebClient();
+                    client.Headers[HttpRequestHeader.ContentType] = _encoder.ContentType;
+                    return await client.UploadStringTaskAsync(new Uri(_uri), "POST", streamReader.ReadToEnd());
+                }
             }
             catch (Exception e)
             {
