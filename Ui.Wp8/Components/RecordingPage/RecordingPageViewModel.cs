@@ -15,8 +15,13 @@ namespace Ui.Wp8.Components.RecordingPage
             GpsDataViewModel = gpsDataViewModel;
         }
 
-        public Acceleration acceleration;
-
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+            AccelerationViewModel.Start();
+            GpsDataViewModel.Start();
+        }
+        
         public void Stop()
         {
         }
