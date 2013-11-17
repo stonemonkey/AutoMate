@@ -12,14 +12,14 @@ namespace Ui.Wp8.Infrastructure
             get { return "application/xml"; }
         }
 
-        public async Task Encode(ClientStatistics clientStatistics, Stream stream)
+        public string Encode(ClientStatistics clientStatistics)
         {
-            using (StreamWriter streamWriter = new StreamWriter(stream))
-            {
-                var serializer = new XmlSerializer(typeof(ClientStatistics));
-                serializer.Serialize(streamWriter, clientStatistics);
-                await stream.FlushAsync();
-            }
+            var writer = new StringWriter();
+            var serializer = new XmlSerializer(typeof(ClientStatistics));
+
+            serializer.Serialize(writer, clientStatistics);
+
+            return writer.ToString();
         }
     }
 }

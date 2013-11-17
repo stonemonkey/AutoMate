@@ -39,7 +39,10 @@ namespace Ui.Wp8.Infrastructure
             {
                 using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(filename, FileMode.Create, store))
                 {
-                    await encoder.Encode(statistics, stream);
+                    using (StreamWriter writer = new StreamWriter(stream))
+                    {
+                        writer.Write(encoder.Encode(statistics));                        
+                    }
                 }                  
             }
         }

@@ -22,15 +22,11 @@ namespace Ui.Wp8.Infrastructure
         {
             try
             {
-                using (var stream = new MemoryStream())
-                {
-                    var data = _encoder.Encode(clientStatistics, stream);
-                    var streamReader = new StreamReader(stream);
+                var data = _encoder.Encode(clientStatistics);
 
-                    var client = new WebClient();
-                    client.Headers[HttpRequestHeader.ContentType] = _encoder.ContentType;
-                    return await client.UploadStringTaskAsync(new Uri(_uri), "POST", streamReader.ReadToEnd());
-                }
+                var client = new WebClient();
+                client.Headers[HttpRequestHeader.ContentType] = _encoder.ContentType;
+                return await client.UploadStringTaskAsync(new Uri(_uri), "POST", data);
             }
             catch (Exception e)
             {
