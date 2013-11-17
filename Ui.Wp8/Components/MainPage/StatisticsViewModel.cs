@@ -47,7 +47,17 @@ namespace Ui.Wp8.Components.MainPage
 
         public async Task Initialize()
         {
-            Data = await _statisticsRepository.Fetch(_userContext.Email);
+            Data = await _statisticsRepository.Fetch(_userContext.Email) ?? DefaultStatisctics();
+        }
+
+        private ClientStatistics DefaultStatisctics()
+        {
+            return new ClientStatistics
+            {
+                AgresivityRate = 1,
+                Location = _userContext.Location,
+                EmailAddress = _userContext.Email,
+            };
         }
     }
 }

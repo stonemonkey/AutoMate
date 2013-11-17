@@ -88,6 +88,15 @@ namespace Ui.Wp8.Components.RecordingPage {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to stop recording?.
+        /// </summary>
+        public static string GoBackMessage {
+            get {
+                return ResourceManager.GetString("GoBackMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Recording.
         /// </summary>
         public static string PageName {
