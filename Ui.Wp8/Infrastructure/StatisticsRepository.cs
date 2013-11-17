@@ -1,4 +1,5 @@
-﻿using Dto;
+﻿using System.Threading.Tasks;
+using Dto;
 
 namespace Ui.Wp8.Infrastructure
 {
@@ -11,8 +12,11 @@ namespace Ui.Wp8.Infrastructure
             _dbProvider = dbProvider;
         }
 
-        public ClientStatistics Fetch(string email)
+        public async Task<ClientStatistics> Fetch(string email)
         {
+            // TODO: remove when finished
+            await Task.Delay(1000);
+
             return new ClientStatistics
             {
                 AgresivityRate = 90,
@@ -21,8 +25,10 @@ namespace Ui.Wp8.Infrastructure
             };
         }
         
-        public void Persist(ClientStatistics statistics)
+        public async Task Persist(ClientStatistics statistics)
         {
+            // TODO: remove when finished
+            await Task.Delay(1500);
         }
     }
 }
