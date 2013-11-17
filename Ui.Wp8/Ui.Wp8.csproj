@@ -108,6 +108,7 @@
     </Compile>
     <Compile Include="Infrastructure\IClientStatisticsEncoder.cs" />
     <Compile Include="Infrastructure\JsonEncoder.cs" />
+    <Compile Include="Infrastructure\StatisticsRepository.cs" />
     <Compile Include="Infrastructure\WebServiceProxy.cs" />
     <Compile Include="Components\PageViewModelBase.cs" />
     <Compile Include="Components\RecordingPage\GpsDataViewModel.cs" />

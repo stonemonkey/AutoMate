@@ -1,6 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net.NetworkInformation;
+using System.Threading.Tasks;
+using System.Windows;
 using Caliburn.Micro;
-using Dto;
 using Ui.Wp8.Components.RecordingPage;
 using Ui.Wp8.Infrastructure;
 
@@ -44,29 +45,34 @@ namespace Ui.Wp8.Components.MainPage
         {
             base.OnActivate();
 
-            var response = await SendStatistics();
-            if (ContainsError(response))
+            if (_statistics.IsUnsent && IsNetworkAvailable())
             {
-                //_statistics.MarkAsSent();
+                await TryUpdateStatistics();
             }
         }
 
-        private static bool ContainsError(string response)
+        private async Task TryUpdateStatistics()
         {
-            return !string.IsNullOrEmpty(response) &&
-                   !response.StartsWith("HTTP/1.1 2");
+            var response = await _serviceProxy.Post(_statistics.Data);
+            if (WasSuccessfullySent(response))
+            {
+                _statistics.MarkAsSent();
+            }
+            else
+            {
+                MessageBox.Show(response);
+            }
         }
 
-        private async Task<string> SendStatistics()
+        private static bool IsNetworkAvailable()
         {
-            var clientStatistics = new ClientStatistics
-            {
-                AgresivityRate = 90, //_statistics.Agresivity,
-                EmailAddress = "test@test.com", //_userContext.Email,
-                Location = "Lespezi", //_userContext.Location,
-            };
+            return NetworkInterface.GetIsNetworkAvailable();
+        }
 
-            return await _serviceProxy.Post(clientStatistics);
+        private static bool WasSuccessfullySent(string response)
+        {
+            return string.IsNullOrEmpty(response) ||
+                   response.StartsWith("HTTP/1.1 2");
         }
     }
 }

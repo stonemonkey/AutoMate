@@ -1,30 +1,54 @@
 ﻿using Caliburn.Micro;
+using Dto;
+using Ui.Wp8.Infrastructure;
 
 namespace Ui.Wp8.Components.MainPage
 {
     public class StatisticsViewModel : Screen
     {
+        private readonly StatisticsRepository _statisticsRepository;
         private readonly UserContextViewModel _userContext;
-        private int _agresivity;
+        private ClientStatistics _data;
+        private bool _isUnsent;
 
-        public int Agresivity
+        public bool IsUnsent
         {
-            get { return _agresivity; } 
+            get { return _isUnsent; } 
             set
             {
-                _agresivity = value;
-                NotifyOfPropertyChange(() => Agresivity);
+                _isUnsent = value;
+                NotifyOfPropertyChange(() => IsUnsent);
             }
         }
 
-        public StatisticsViewModel(UserContextViewModel userContext)
+        public ClientStatistics Data
         {
+            get { return _data; }
+            set
+            {
+                IsUnsent = true;
+
+                _data = value;
+                NotifyOfPropertyChange(() => Data);
+            }
+        }
+
+        public StatisticsViewModel(StatisticsRepository statisticsRepository, UserContextViewModel userContext)
+        {   
+            _statisticsRepository = statisticsRepository;
             _userContext = userContext;
+
+            Data = Load();
         }
 
         public void MarkAsSent()
         {
-            // TODO:
+            IsUnsent = false;
+        }
+
+        private ClientStatistics Load()
+        {
+            return _statisticsRepository.Fetch(_userContext.Email);
         }
     }
 }

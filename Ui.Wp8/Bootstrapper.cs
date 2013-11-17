@@ -20,6 +20,7 @@ namespace Ui.Wp8
             _container.Singleton<UserContextViewModel>();
             
             _container.PerRequest<AgresivityCalculator>();
+            _container.PerRequest<StatisticsRepository>();
 
             _container.PerRequest<MainPageViewModel>();
             _container.PerRequest<RecordingPageViewModel>();
