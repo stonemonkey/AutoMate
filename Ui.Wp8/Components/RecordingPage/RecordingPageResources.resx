@@ -137,4 +137,7 @@
   <data name="ApplicationTitle" xml:space="preserve">
     <value>AutoMate</value>
   </data>
+  <data name="GoBackMessage" xml:space="preserve">
+    <value>Are you sure you want to stop recording?</value>
+  </data>
 </root>

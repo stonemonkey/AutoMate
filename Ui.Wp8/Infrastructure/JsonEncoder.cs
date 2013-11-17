@@ -1,7 +1,4 @@
 ﻿using Dto;
-using Newtonsoft.Json;
-using System.IO;
-using System.Threading.Tasks;
 
 namespace Ui.Wp8.Infrastructure
 {
