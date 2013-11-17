@@ -106,13 +106,15 @@
     <Compile Include="Components\MainPage\UserContextView.xaml.cs">
       <DependentUpon>UserContextView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Bool2VisibilityConverter.cs" />
     <Compile Include="Infrastructure\DbProvider.cs" />
     <Compile Include="Infrastructure\IClientStatisticsEncoder.cs" />
+    <Compile Include="Infrastructure\InvBool2VisibilityConverter.cs" />
     <Compile Include="Infrastructure\JsonEncoder.cs" />
     <Compile Include="Infrastructure\StatisticsRepository.cs" />
     <Compile Include="Infrastructure\WebServiceProxy.cs" />
     <Compile Include="Components\PageViewModelBase.cs" />
-    <Compile Include="Components\RecordingPage\AccelerationToWidthConverter.cs" />
+    <Compile Include="Infrastructure\AccelerationToWidthConverter.cs" />
     <Compile Include="Components\RecordingPage\GpsDataViewModel.cs" />
     <Compile Include="Components\RecordingPage\GpsDataView.xaml.cs">
       <DependentUpon>GpsDataView.xaml</DependentUpon>
@@ -131,7 +133,7 @@
     </Compile>
     <Compile Include="Components\RecordingPage\RecordingPageViewModel.cs" />
     <Compile Include="Components\RecordingPage\AccelerationViewModel.cs" />
-    <Compile Include="Components\RecordingPage\SpeedToAngleConverter.cs" />
+    <Compile Include="Infrastructure\SpeedToAngleConverter.cs" />
     <Compile Include="Infrastructure\AgresivityCalculator.cs" />
     <Compile Include="Infrastructure\IAgresivityCalculator.cs" />
     <Compile Include="Infrastructure\IDataAquisition.cs" />
