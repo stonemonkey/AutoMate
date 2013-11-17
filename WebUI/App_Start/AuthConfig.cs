@@ -1,5 +1,4 @@
-﻿using Microsoft.Web.WebPages.OAuth;
-
+﻿
 namespace WebUI.App_Start
 {
     public static class AuthConfig
@@ -17,10 +16,9 @@ namespace WebUI.App_Start
             //    consumerKey: "",
             //    consumerSecret: "");
 
-            OAuthWebSecurity.RegisterFacebookClient(
-                appId: "",
-                appSecret: "");
-
+            //OAuthWebSecurity.RegisterFacebookClient(
+            //    appId: "",
+            //    appSecret: "");    
             //OAuthWebSecurity.RegisterGoogleClient();
         }
     }
