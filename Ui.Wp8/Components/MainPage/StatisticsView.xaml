@@ -4,12 +4,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
-        <TextBox Text="Driving aggresivity rate: 6" Background="Black" Foreground="Azure"/>
+        <Slider HorizontalAlignment="Center" Foreground="Red"
+                VerticalAlignment="Top" Width="400" Minimum="10" Maximum="100" 
+                Value="{Binding Data.AgresivityRate, Mode=TwoWay}"
+                SmallChange="10" LargeChange="20"/>
     </Grid>
 </UserControl>
