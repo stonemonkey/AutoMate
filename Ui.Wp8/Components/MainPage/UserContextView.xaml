@@ -9,7 +9,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
    
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
+    <Grid x:Name="LayoutRoot">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
@@ -21,10 +21,10 @@
         </Grid.RowDefinitions>
         
         <TextBlock Text="Location:" Foreground="Azure" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <TextBox Grid.Column="1" Text="{Binding Location}" Background="Black" Foreground="Azure"/>
+        <TextBox Grid.Column="1" Text="{Binding Location}" IsReadOnly="True" Background="Black" Foreground="Azure"/>
         <TextBlock Grid.Row="1" Text="Name:" Foreground="Azure" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding FullName}" Background="Black" Foreground="Azure"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding FullName}" IsReadOnly="True" Background="Black" Foreground="Azure"/>
         <TextBlock Grid.Row="2" Text="Email:" Foreground="Azure" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Email}" Background="Black" Foreground="Azure" />
+        <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Email}" IsReadOnly="True" Background="Black" Foreground="Azure" />
     </Grid>
 </UserControl>

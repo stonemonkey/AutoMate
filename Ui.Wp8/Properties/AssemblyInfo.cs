@@ -9,8 +9,8 @@ using System.Resources;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("home")]
-[assembly: AssemblyProduct("TrackMyTrails")]
-[assembly: AssemblyCopyright("Copyright © May 2013 by stonemonkey77ro")]
+[assembly: AssemblyProduct("AutoMate")]
+[assembly: AssemblyCopyright("Copyright © May 2013 by stonemonkey77ro, mihaiS and adiB")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Caliburn.Micro;
 using Dto;
 using Ui.Wp8.Infrastructure;
@@ -15,7 +16,7 @@ namespace Ui.Wp8.Components.MainPage
         public bool IsUnsent
         {
             get { return _isUnsent; } 
-            set
+            private set
             {
                 _isUnsent = value;
                 NotifyOfPropertyChange(() => IsUnsent);
@@ -25,7 +26,7 @@ namespace Ui.Wp8.Components.MainPage
         public ClientStatistics Data
         {
             get { return _data; }
-            set
+            private set
             {
                 IsUnsent = true;
 
@@ -57,6 +58,7 @@ namespace Ui.Wp8.Components.MainPage
                 AgresivityRate = 1,
                 Location = _userContext.Location,
                 EmailAddress = _userContext.Email,
+                LastModified = DateTime.Now,
             };
         }
     }

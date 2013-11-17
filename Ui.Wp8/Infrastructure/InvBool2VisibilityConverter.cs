@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace VacationManager.Ui.Converters
+namespace Ui.Wp8.Infrastructure
 {
     public class Bool2VisibilityConverter : IValueConverter
     {
