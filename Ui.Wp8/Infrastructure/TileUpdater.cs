@@ -25,14 +25,9 @@ namespace Ui.Wp8.Infrastructure
 
         public void SetHighAcceleration()
         {
-            Update(Colors.Green, "High Acceleration!", WarningIcon);
+            Update(Colors.Orange, "Eratic Acceleration!", WarningIcon);
         }
-
-        public void SetAbruptBreaking()
-        {
-            Update(Colors.Orange, "Abrupt Breaking!", WarningIcon);
-        }
-
+        
         private void Update(Color backgroundColor, string message, Uri icon)
         {
             IconicTileData TileData = new IconicTileData()
