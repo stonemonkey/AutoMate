@@ -23,6 +23,11 @@ namespace WebUI.Controllers
             return View();
         }
 
+        public string GetBingMapsAuthKey()
+        {
+            return Configuration.BingMapsAuthenticationKey;
+        }
+
         public JsonResult GetStartEndDate()
         {
             var endDate = repository.GetUsersStatistisc().Max(x => x.DateTime);
@@ -35,7 +40,7 @@ namespace WebUI.Controllers
                 }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetStatistics(DateTime startDate, DateTime endDate)
+        public JsonResult GetBoundaries()
         {
             var xml = new XmlDocument();
             xml.Load(Server.MapPath("~/Data/ro.kml"));
@@ -44,23 +49,27 @@ namespace WebUI.Controllers
             {
                 var coordinates = xNode.SelectNodes("descendant::coordinates")[0].InnerText.Split(new char[] { '\n', '\r' }).Where(s => s.IndexOf(',') > 0).ToList();
                 var county = new County
+                {
+                    Name = xNode.SelectNodes("name")[0].InnerText,
+                    Locations = coordinates.Select(f => new Location
                     {
-                        Name = xNode.SelectNodes("name")[0].InnerText,
-                        Locations = coordinates.Select(f => new Location
-                            {
-                                Latitude = float.Parse(f.Trim().Split(',')[1]),
-                                Longitude = float.Parse(f.Trim().Split(',')[0])
-                            }).ToList()
-                    };
+                        Latitude = float.Parse(f.Trim().Split(',')[1]),
+                        Longitude = float.Parse(f.Trim().Split(',')[0])
+                    }).ToList()
+                };
                 counties.Add(county);
             }
 
+            return Json(counties, JsonRequestBehavior.AllowGet);
+        }
 
+        public JsonResult GetStatistics(DateTime startDate, DateTime endDate)
+        {
             var statistics = new Statistics
             {
                 BingMapAuthKey = Configuration.BingMapsAuthenticationKey,
                 ClientStatisticses = GetDistrictAgresivityRates(startDate, endDate),
-                Counties = counties
+                Counties = null
             };
 
             return Json(statistics, JsonRequestBehavior.AllowGet);

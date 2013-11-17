@@ -1,4 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Device.Location;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Windows.Devices.Sensors;
 
 namespace Ui.Wp8.Infrastructure
 {
@@ -6,11 +12,11 @@ namespace Ui.Wp8.Infrastructure
     {
         private readonly Random _random = new Random();
 
-        public void AddAcceleration(Acceleration acceleration)
+        public void AddAcceleration(AccelerometerReading acceleration)
         {
         }
 
-        public void AddGpsData(GpsData gpsData)
+        public void AddGpsData(GeoCoordinate geoCoordinate)
         {
         }
 

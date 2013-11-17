@@ -1,32 +1,105 @@
 ﻿var map = null;
 
-function initMap(key) {
-    if (map) {
-        return;
-    }
-    map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-        credentials: key,
-        enableClickableLogo: false,
-        showDashboard: false,
-        animations: false
-    });
-    Microsoft.Maps.loadModule('Microsoft.Maps.Search', {});
+function initMap() {
+    var defer = $.Deferred();
+    $.ajax({
+        url: 'home/GetBingMapsAuthKey',
+        success: function (data) {
+            map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
+                credentials: data,
+                enableClickableLogo: false,
+                showDashboard: false,
+                animations: false
+            });
+            Microsoft.Maps.loadModule('Microsoft.Maps.Search', {});
 
-    map.setView({ zoom: 6, center: new Microsoft.Maps.Location(45.867063, 24.916992) });
-}
-function getMap() {
+            map.setView({ zoom: 6, center: new Microsoft.Maps.Location(45.867063, 24.916992) });
 
-    var clientStatisticsItems = [];
-
-    function getAgresivityRateByLocation(locationName) {
-        for (var i = 0, len = clientStatisticsItems.length; i < len; i++) {
-            if (clientStatisticsItems[i].Location === locationName)
-                return clientStatisticsItems[i].AgresivityRate;
+            getCounties().then(function () {
+                defer.resolve();
+            });
         }
-        return 0;
-    }
+    });
 
-    $('.preloader').show();
+    return defer.promise();
+}
+
+function getCounties() {
+    var defer = $.Deferred();
+    $.getJSON('home/GetBoundaries', function (data) {
+        $(data).each(function () {
+            var countyName = this.Name;
+            var arrayCollection = [];
+
+            $(this.Locations).each(function () {
+
+                    var location = new Microsoft.Maps.Location(this.Latitude, this.Longitude);
+                    arrayCollection.push(location);
+                });
+            var color = new Microsoft.Maps.Color(0, 255, 0, 0);
+
+            var line = new Microsoft.Maps.Polygon(arrayCollection, {
+                fillColor: color,
+                strokeColor: new Microsoft.Maps.Color(200, 0, 100, 100),
+                strokeThickness: 1
+            });
+            line.oldColor = color;
+            line.countyName = countyName;
+
+            Microsoft.Maps.Events.addHandler(line, 'mouseover', function () {
+                
+                line.setOptions({
+                    fillColor: new Microsoft.Maps.Color(100, 100, 0, 100),
+                    strokeColor: new Microsoft.Maps.Color(200, 0, 100, 100),
+                    strokeThickness: 3
+                });
+            });
+
+            Microsoft.Maps.Events.addHandler(line, 'mouseout', function () {
+                line.setOptions({
+                    fillColor: line.oldColor,
+                    strokeColor: new Microsoft.Maps.Color(200, 0, 100, 100),
+                    strokeThickness: 1
+                });
+            });
+
+            Microsoft.Maps.Events.addHandler(line, 'click', function () {
+                $('#county').html(line.countyName);
+            });
+
+            map.entities.push(line);
+            
+        });
+        defer.resolve();
+    });
+
+    return defer.promise();
+}
+
+function getCounty(countyName) {
+    var length = map.entities.getLength();
+    for (var i = 0; i < length; i++) {
+        var county = map.entities.get(i);
+        if (county.countyName == countyName) {
+            return county;
+         }
+    }
+}
+function clearColors() {
+    var length = map.entities.getLength();
+    for (var i = 0; i < length; i++) {
+        var county = map.entities.get(i);
+        county.setOptions({
+            fillColor: new Microsoft.Maps.Color(0, 255, 0, 0)
+        });
+    }
+}
+
+function getMap() {
+    
+    //$('.preloader').show();
+
+   
     
     $.ajax({
         type: "GET",
@@ -37,60 +110,25 @@ function getMap() {
             endDate: $('#slider').dateRangeSlider("values").max.toJSON()
         },
         success: function (data) {
-           
-            initMap(data.BingMapAuthKey);
-            map.entities.clear();
-            
 
+            clearColors();
 
             $.each(data.ClientStatisticses, function (index, item) {
-                clientStatisticsItems.push(item);
-            });
-
-
-            $(data.Counties).each(function () {
-                var countyName = this.Name;
-                var arrayCollection = [];
-                $(this.Locations).each(function () {
-
-                    var location = new Microsoft.Maps.Location(this.Latitude, this.Longitude);
-                    arrayCollection.push(location);
-                });
-
-                var color = new Microsoft.Maps.Color(getAgresivityRateByLocation(countyName), 255, 0, 0);
-
-                var line = new Microsoft.Maps.Polygon(arrayCollection, {
-                    fillColor: color,
-                    strokeColor: new Microsoft.Maps.Color(200, 0, 100, 100),
-                    strokeThickness: 1
-                });
-                line.countyName = countyName;
-
-                Microsoft.Maps.Events.addHandler(line, 'mouseover', function () {
-                    line.setOptions({
-                        fillColor: new Microsoft.Maps.Color(100, 100, 0, 100),
-                        strokeColor: new Microsoft.Maps.Color(200, 0, 100, 100),
-                        strokeThickness: 3
+                var color = new Microsoft.Maps.Color(item.AgresivityRate, 255, 0, 0);
+                var x = getCounty(item.Location);
+                if (x) {
+                    x.oldColor = color;
+                    x.setOptions({
+                        fillColor: color
                     });
-                });
-
-                Microsoft.Maps.Events.addHandler(line, 'mouseout', function () {
-                    line.setOptions({
-                        fillColor: color,
-                        strokeColor: new Microsoft.Maps.Color(200, 0, 100, 100),
-                        strokeThickness: 1
-                    });
-                });
-
-                Microsoft.Maps.Events.addHandler(line, 'click', function () {
-                    $('#county').html(line.countyName);
-                });
-
-                map.entities.push(line);
+                } else {
+                    console.log("NOF " + item.Location);
+                }
+                
             });
         },
         complete: function () {
-            $('.preloader').hide();
+            //$('.preloader').hide();
         }
     });
 }
@@ -102,6 +140,7 @@ function getStartEndDate() {
         var dd = sDate.split('-')[2];
         return new Date(parseInt(yy), parseInt(mm), parseInt(dd));
     };
+    
     var defer = $.Deferred();
     $.getJSON('Home/GetStartEndDate', function (data) {
         $('#endDate').val(data.EndDate);
@@ -122,9 +161,9 @@ function getStartEndDate() {
 }
 
 $(function () {
-    
-    getStartEndDate().then(getMap);
-
+    initMap().then(function() {
+        getStartEndDate().then(getMap);
+    });
 });
 
 

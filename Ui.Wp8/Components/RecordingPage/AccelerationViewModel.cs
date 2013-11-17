@@ -24,10 +24,18 @@ namespace Ui.Wp8.Components.RecordingPage
             _accelerometer.ReportInterval = ReportInterval;
         }
 
+        private AccelerometerReading _acceleration;
+
+        public AccelerometerReading Acceleration
+        {
+            get { return _acceleration; }
+            set { _acceleration = value; NotifyOfPropertyChange(() => Acceleration); }
+        }
+
         void _accelerometer_ReadingChanged(Accelerometer sender, AccelerometerReadingChangedEventArgs e)
         {
-            var acceleration = new Acceleration(e.Reading);
-            _calculator.AddAcceleration(acceleration);
+            Acceleration = e.Reading;
+            _calculator.AddAcceleration(Acceleration);
         }
 
         public void Start()

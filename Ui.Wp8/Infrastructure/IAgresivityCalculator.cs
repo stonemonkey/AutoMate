@@ -1,9 +1,11 @@
-﻿namespace Ui.Wp8.Infrastructure
+﻿using System.Device.Location;
+using Windows.Devices.Sensors;
+namespace Ui.Wp8.Infrastructure
 {
     public interface IAgresivityCalculator
     {
-        void AddAcceleration(Acceleration acceleration);
-        void AddGpsData(GpsData gpsData);
+        void AddAcceleration(AccelerometerReading acceleration);
+        void AddGpsData(GeoCoordinate geoCoordinate);
         int Agresivity();
     }
 }

@@ -111,6 +111,7 @@
     <Compile Include="Infrastructure\StatisticsRepository.cs" />
     <Compile Include="Infrastructure\WebServiceProxy.cs" />
     <Compile Include="Components\PageViewModelBase.cs" />
+    <Compile Include="Components\RecordingPage\AccelerationToWidthConverter.cs" />
     <Compile Include="Components\RecordingPage\GpsDataViewModel.cs" />
     <Compile Include="Components\RecordingPage\GpsDataView.xaml.cs">
       <DependentUpon>GpsDataView.xaml</DependentUpon>
@@ -128,8 +129,8 @@
       <DependentUpon>RecordingPageView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\RecordingPage\RecordingPageViewModel.cs" />
-    <Compile Include="Infrastructure\Acceleration.cs" />
     <Compile Include="Components\RecordingPage\AccelerationViewModel.cs" />
+    <Compile Include="Components\RecordingPage\SpeedToAngleConverter.cs" />
     <Compile Include="Infrastructure\AgresivityCalculator.cs" />
     <Compile Include="Infrastructure\GpsData.cs" />
     <Compile Include="Infrastructure\IAgresivityCalculator.cs" />

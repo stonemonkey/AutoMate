@@ -3,13 +3,69 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:l="clr-namespace:Ui.Wp8.Components.RecordingPage" 
     mc:Ignorable="d"
     FontSize="{StaticResource PhoneFontSizeNormal}"           
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
-    
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
-        <Ellipse VerticalAlignment="Bottom" Margin="10" Fill="Red" Width="300" Height="300"></Ellipse>
+
+    <UserControl.Resources>
+        <l:SpeedToAngleConverter x:Key="SpeedToAngleConverter"/>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}" Width="350" Height="350" >
+
+        <Ellipse Stroke="White" StrokeThickness="10" />
+
+        <Grid Margin="0,0,0,60">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom" Margin="70,0,0,0">90</TextBlock>
+            <TextBlock Grid.Column="1" Grid.Row="0" VerticalAlignment="Top" Margin="20,10" HorizontalAlignment="Center">120</TextBlock>
+            <TextBlock Grid.Column="2" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,70,0">150</TextBlock>
+
+            <TextBlock Grid.Column="0" Grid.Row="1" Margin="20,45,20,0">60</TextBlock>
+            <TextBlock Grid.Column="2" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20,0">180</TextBlock>
+
+            <TextBlock Grid.Column="0" Grid.Row="2" VerticalAlignment="Bottom" Margin="20,0">30</TextBlock>
+            <TextBlock Grid.Column="2" Grid.Row="2" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20,0">210</TextBlock>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="45,0">0</TextBlock>
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock  Text="{Binding GpsData.Speed, Converter={StaticResource SpeedToAngleConverter}}" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                <TextBlock Text=" km/h" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+            </StackPanel>
+            <TextBlock Grid.Row="3" Grid.Column="2" VerticalAlignment="Bottom" Margin="30,0">270</TextBlock>
+        </Grid>
+
+        <Grid RenderTransformOrigin="0.5, 0.5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="10"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Row="2" Grid.Column="1" Fill="White"></Rectangle>
+            <Grid.RenderTransform>
+                <RotateTransform Angle="45"></RotateTransform>
+            </Grid.RenderTransform>
+        </Grid>
     </Grid>
 </UserControl>

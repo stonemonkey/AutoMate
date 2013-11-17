@@ -21,15 +21,26 @@ namespace Ui.Wp8.Components.RecordingPage
         {
             MovementThreshold = 5;
             _calculator = calculator;
-            _watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.Default);
+            _watcher = new GeoCoordinateWatcher(GeoPositionAccuracy.High);
             _watcher.MovementThreshold = MovementThreshold;
             _watcher.PositionChanged += _watcher_PositionChanged;
+
+            GpsData = new System.Device.Location.GeoCoordinate();
+            GpsData.Speed = 54;
+        }
+
+        private GeoCoordinate _gpsData;
+
+        public GeoCoordinate GpsData
+        {
+            get { return _gpsData; }
+            set { _gpsData = value; NotifyOfPropertyChange(() => GpsData); }
         }
 
         private void _watcher_PositionChanged(object sender, GeoPositionChangedEventArgs<GeoCoordinate> e)
         {
-            var gpsData = new GpsData(e.Position.Location);
-            _calculator.AddGpsData(gpsData);
+            GpsData = e.Position.Location;
+            _calculator.AddGpsData(GpsData);
         }
 
         public void Start()
