@@ -17,7 +17,7 @@ namespace DataAccess
         public string Location { get; set; }
 
         [Required]
-        [Range(0, 100)]
+        [Range(1    , 100)]
         public int AgresivityRate { get; set; }
 
         [Required]

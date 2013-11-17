@@ -158,6 +158,23 @@ $(function () {
     initMap().then(function() {
         getStartEndDate().then(getMap);
     });
+    
+    var appBar, metroJs;
+    appBar = $(".appbar").applicationBar({
+        preloadAltBaseTheme: true,
+        bindKeyboard: true,
+        metroLightUrl: '~/content/images/metroIcons_light.jpg',
+        metroDarkUrl: '~/content/images/metroIcons.jpg'
+    });
+    // append the theme options 
+    metroJs = jQuery.fn.metrojs;
+    metroJs.theme.appendAccentColors({
+        accentListContainer: ".theme-options"
+    });
+    metroJs.theme.appendBaseThemes({
+        baseThemeListContainer: ".base-theme-options"
+    });
+    
 });
 
 
