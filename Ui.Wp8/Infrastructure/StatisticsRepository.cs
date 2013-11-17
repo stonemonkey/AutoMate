@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Dto;
+using System.IO.IsolatedStorage;
+using System.IO;
 
 namespace Ui.Wp8.Infrastructure
 {
@@ -29,6 +31,17 @@ namespace Ui.Wp8.Infrastructure
         {
             // TODO: remove when finished
             await Task.Delay(1500);
+
+            var encoder = new XmlEncoder();
+            var filename = _dbProvider.BuildDbName(statistics.EmailAddress);
+
+            using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication())
+            {
+                using (IsolatedStorageFileStream stream = new IsolatedStorageFileStream(filename, FileMode.Create, store))
+                {
+                    await encoder.Encode(statistics, stream);
+                }                  
+            }
         }
     }
 }

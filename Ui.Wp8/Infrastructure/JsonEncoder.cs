@@ -1,4 +1,7 @@
 ﻿using Dto;
+using Newtonsoft.Json;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Ui.Wp8.Infrastructure
 {
@@ -9,9 +12,15 @@ namespace Ui.Wp8.Infrastructure
             get { return "application/json"; }
         }
 
-        public string Encode(ClientStatistics clientStatistics)
+        public async Task Encode(ClientStatistics clientStatistics, Stream stream)
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(clientStatistics);
+            using (StreamWriter streamWriter = new StreamWriter(stream))
+            using (JsonWriter jsonWriter = new JsonTextWriter(streamWriter))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(jsonWriter, clientStatistics);
+                await stream.FlushAsync();
+            }
         }
     }
 }
