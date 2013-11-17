@@ -16,11 +16,16 @@ namespace Ui.Wp8
             _container = new PhoneContainer();
 
             _container.RegisterPhoneServices(RootFrame);
+
+            _container.Singleton<UserContextViewModel>();
+            
+            _container.PerRequest<AgresivityCalculator>();
+
             _container.PerRequest<MainPageViewModel>();
             _container.PerRequest<RecordingPageViewModel>();
-            _container.PerRequest<AgresivityCalculator>();
             _container.PerRequest<AccelerationViewModel>();
             _container.PerRequest<GpsDataViewModel>();
+            _container.PerRequest<StatisticsViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="c443783e-1c54-43a3-9319-8c328adc4283" ChangeDateTime="11/16/2013 18:30:45">
+    <Property Name="ElementName" Value="[dbo].[UserStatistic].[Email]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserStatistic]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="EmailAddress" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="380e3e35-4b21-4adb-adff-c9b8e89c8e68" ChangeDateTime="11/16/2013 18:33:08">
+    <Property Name="ElementName" Value="[dbo].[CK_UserStatistic_Column]" />
+    <Property Name="ElementType" Value="SqlCheckConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[UserStatistic]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[CK_UserStatistic_AgresivityRate]" />
+  </Operation>
+</Operations>

@@ -1,93 +1,169 @@
 ﻿var map = null;
-var clientStatisticsItems = [];
 
-function getAgresivityRateByLocation(locationName) {
-    for (var i = 0, len = clientStatisticsItems.length; i < len; i++) {
-
-        if (clientStatisticsItems[i].Location === locationName)
-            return clientStatisticsItems[i].AgresivityRate;
-    }
-    return 0;
-}
-
-function getMap() {
+function initMap() {
+    var defer = $.Deferred();
     $.ajax({
-        type: "GET",
-        url: "Home/BingMapsAuthenticationKey",
+        url: 'home/GetBingMapsAuthKey',
         success: function (data) {
             map = new Microsoft.Maps.Map(document.getElementById('myMap'), {
-                credentials: data   ,
+                credentials: data,
                 enableClickableLogo: false,
+                showDashboard: false,
+                animations: false
             });
-
             Microsoft.Maps.loadModule('Microsoft.Maps.Search', {});
 
             map.setView({ zoom: 6, center: new Microsoft.Maps.Location(45.867063, 24.916992) });
 
-            $.getJSON('Home/GetLocationAgresivtyRates', function (data) {
+            getCounties().then(function () {
+                defer.resolve();
+            });
+        }
+    });
 
-                $.each(data, function (index, item) {
-                    clientStatisticsItems.push(item);
+    return defer.promise();
+}
+
+function getCounties() {
+    var defer = $.Deferred();
+    $.getJSON('home/GetBoundaries', function (data) {
+        $(data).each(function () {
+            var countyName = this.Name;
+            var arrayCollection = [];
+
+            $(this.Locations).each(function () {
+
+                    var location = new Microsoft.Maps.Location(this.Latitude, this.Longitude);
+                    arrayCollection.push(location);
                 });
+            var color = new Microsoft.Maps.Color(0, 255, 0, 0);
 
-                $.ajax({
-                    url: 'Home/GetRoKmlData',
-                    traditional: true,
-                    success: function (data) {
-                        var xml = $(data);
-                        xml.find('coordinates').each(function () {
-                            var res = this.textContent.split('\n');
-                            var countyName = $(this).parent().parent().parent().parent().parent().find('name').text();
-                            var arrayCollection = [];
-                            $(res).each(function () {
-                                var loc = this.split(',');
+            var line = new Microsoft.Maps.Polygon(arrayCollection, {
+                fillColor: color,
+                strokeColor: new Microsoft.Maps.Color(200, 0, 100, 100),
+                strokeThickness: 1
+            });
+            line.oldColor = color;
+            line.countyName = countyName;
 
-                                if (parseFloat(loc[0]) && parseFloat(loc[1])) {
-                                    var location = new Microsoft.Maps.Location(parseFloat(loc[1]), parseFloat(loc[0]));
-                                    arrayCollection.push(location);
-                                }
-                            });
-
-                            var color = new Microsoft.Maps.Color(getAgresivityRateByLocation(countyName), 255, 0, 0);
-
-                            var line = new Microsoft.Maps.Polygon(arrayCollection, {
-                                fillColor: color,
-                                strokeColor: new Microsoft.Maps.Color(200, 0, 100, 100),
-                                strokeThickness: 1
-                            });
-                            line.countyName = countyName;
-
-                            Microsoft.Maps.Events.addHandler(line, 'mouseover', function () {
-                                line.setOptions({
-                                    fillColor: new Microsoft.Maps.Color(100, 100, 0, 100),
-                                    strokeColor: new Microsoft.Maps.Color(200, 0, 100, 100),
-                                    strokeThickness: 3
-                                });
-                            });
-
-                            Microsoft.Maps.Events.addHandler(line, 'mouseout', function () {
-                                line.setOptions({
-                                    fillColor: color,
-                                    strokeColor: new Microsoft.Maps.Color(200, 0, 100, 100),
-                                    strokeThickness: 1
-                                });
-                            });
-
-                            Microsoft.Maps.Events.addHandler(line, 'click', function () {
-                                $('#county').html(line.countyName);
-                            });
-
-                            map.entities.push(line);
-                        });
-                    }
+            Microsoft.Maps.Events.addHandler(line, 'mouseover', function () {
+                
+                line.setOptions({
+                    fillColor: new Microsoft.Maps.Color(100, 100, 0, 100),
+                    strokeColor: new Microsoft.Maps.Color(200, 0, 100, 100),
+                    strokeThickness: 3
                 });
             });
+
+            Microsoft.Maps.Events.addHandler(line, 'mouseout', function () {
+                line.setOptions({
+                    fillColor: line.oldColor,
+                    strokeColor: new Microsoft.Maps.Color(200, 0, 100, 100),
+                    strokeThickness: 1
+                });
+            });
+
+            Microsoft.Maps.Events.addHandler(line, 'click', function () {
+                $('#county').html(line.countyName);
+            });
+
+            map.entities.push(line);
+            
+        });
+        defer.resolve();
+    });
+
+    return defer.promise();
+}
+
+function getCounty(countyName) {
+    var length = map.entities.getLength();
+    for (var i = 0; i < length; i++) {
+        var county = map.entities.get(i);
+        if (county.countyName == countyName) {
+            return county;
+         }
+    }
+}
+function clearColors() {
+    var length = map.entities.getLength();
+    for (var i = 0; i < length; i++) {
+        var county = map.entities.get(i);
+        county.setOptions({
+            fillColor: new Microsoft.Maps.Color(0, 255, 0, 0)
+        });
+    }
+}
+
+function getMap() {
+    
+    //$('.preloader').show();
+
+   
+    
+    $.ajax({
+        type: "GET",
+        datatype: 'json',
+        url: "Home/GetStatistics",
+        data: {
+            startDate: $('#slider').dateRangeSlider("values").min.toJSON(),
+            endDate: $('#slider').dateRangeSlider("values").max.toJSON()
+        },
+        success: function (data) {
+
+            clearColors();
+
+            $.each(data.ClientStatisticses, function (index, item) {
+                var color = new Microsoft.Maps.Color(item.AgresivityRate, 255, 0, 0);
+                var x = getCounty(item.Location);
+                if (x) {
+                    x.oldColor = color;
+                    x.setOptions({
+                        fillColor: color
+                    });
+                } else {
+                    console.log("NOF " + item.Location);
+                }
+                
+            });
+        },
+        complete: function () {
+            //$('.preloader').hide();
         }
     });
 }
 
+function getStartEndDate() {
+    var getDate = function (sDate) {
+        var yy = sDate.split('-')[0];
+        var mm = sDate.split('-')[1];
+        var dd = sDate.split('-')[2];
+        return new Date(parseInt(yy), parseInt(mm), parseInt(dd));
+    };
+    
+    var defer = $.Deferred();
+    $.getJSON('Home/GetStartEndDate', function (data) {
+        $('#endDate').val(data.EndDate);
+        $('#startDate').val(data.StartDate);
+        $("#slider").dateRangeSlider({
+            bounds: {
+                min: (getDate(data.StartDate)),
+                max: (getDate(data.EndDate))
+            },
+            defaultValues: {
+                min: getDate(data.StartDate),
+                max: getDate(data.EndDate)
+            }
+        }).bind("valuesChanged", getMap);
+        defer.resolve();
+    });
+    return defer.promise();
+}
+
 $(function () {
-    getMap();
+    initMap().then(function() {
+        getStartEndDate().then(getMap);
+    });
 });
 
 

@@ -39,10 +39,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -59,9 +65,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -127,15 +130,27 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="Controllers\AutomateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Location2County.cs" />
+    <Compile Include="Models\Statistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlActionResult.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\img\preloader.gif" />
+    <Content Include="Content\jqslider\classic-min.css" />
+    <Content Include="Content\jqslider\classic.css" />
+    <Content Include="Content\jqslider\icons-classic\label.png" />
+    <Content Include="Content\jqslider\icons-classic\resultset_next.png" />
+    <Content Include="Content\jqslider\icons-classic\resultset_previous.png" />
+    <Content Include="Content\jqslider\iThing-min.css" />
+    <Content Include="Content\jqslider\iThing.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -195,7 +210,52 @@
     <Content Include="Data\ro.kml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Scripts\jQRangeSlider\History.md" />
+    <Content Include="Scripts\jQRangeSlider\Readme.md" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Scripts\jQRangeSlider\css\classic-min.css" />
+    <Content Include="Scripts\jQRangeSlider\css\classic.css" />
+    <Content Include="Scripts\jQRangeSlider\css\icons-classic\label.png" />
+    <Content Include="Scripts\jQRangeSlider\css\icons-classic\resultset_next.png" />
+    <Content Include="Scripts\jQRangeSlider\css\icons-classic\resultset_previous.png" />
+    <Content Include="Scripts\jQRangeSlider\css\iThing-min.css" />
+    <Content Include="Scripts\jQRangeSlider\css\iThing.css" />
+    <Content Include="Scripts\jQRangeSlider\demo\dateSliderDemo.js" />
+    <Content Include="Scripts\jQRangeSlider\demo\demo.js" />
+    <Content Include="Scripts\jQRangeSlider\demo\editSliderDemo.js" />
+    <Content Include="Scripts\jQRangeSlider\demo\img\calendar.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\img\classicTheme.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\img\iThingTheme.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\index.html" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\images\ui-icons_222222_256x240.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\images\ui-icons_454545_256x240.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\images\ui-icons_888888_256x240.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\css\smoothness\jquery-ui-1.8.10.custom.css" />
+    <Content Include="Scripts\jQRangeSlider\demo\lib\jquery-ui\js\jquery-ui-1.8.16.custom.min.js" />
+    <Content Include="Scripts\jQRangeSlider\demo\sliderDemo.js" />
+    <Content Include="Scripts\jQRangeSlider\demo\style.css" />
+    <Content Include="Scripts\jQRangeSlider\GPL-License.txt" />
+    <Content Include="Scripts\jQRangeSlider\jQAllRangeSliders-min.js" />
+    <Content Include="Scripts\jQRangeSlider\jQAllRangeSliders-withRuler-min.js" />
+    <Content Include="Scripts\jQRangeSlider\jQDateRangeSlider-min.js" />
+    <Content Include="Scripts\jQRangeSlider\jQDateRangeSlider-withRuler-min.js" />
+    <Content Include="Scripts\jQRangeSlider\jQEditRangeSlider-min.js" />
+    <Content Include="Scripts\jQRangeSlider\jQEditRangeSlider-withRuler-min.js" />
+    <Content Include="Scripts\jQRangeSlider\jQRangeSlider-min.js" />
+    <Content Include="Scripts\jQRangeSlider\jQRangeSlider-withRuler-min.js" />
+    <Content Include="Scripts\jQRangeSlider\lib\jquery.mousewheel.license.txt" />
+    <Content Include="Scripts\jQRangeSlider\lib\jquery.mousewheel.min.js" />
+    <Content Include="Scripts\jQRangeSlider\MIT-License.txt" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -232,6 +292,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{f4d51d99-a8fb-4f83-b6f0-b770bdc28bb2}</Project>
+      <Name>DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dto\Dto.csproj">
       <Project>{ed4c7d20-d82e-4c23-9e35-557e7831f9ff}</Project>
       <Name>Dto</Name>
@@ -253,7 +317,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>61612</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:27196/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

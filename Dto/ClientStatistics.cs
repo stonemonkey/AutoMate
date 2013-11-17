@@ -4,5 +4,6 @@
     {
         public string Location { get; set; }
         public int AgresivityRate { get; set; }
+        public string EmailAddress { get; set; }
     }
 }

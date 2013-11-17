@@ -10,19 +10,19 @@ namespace Ui.Wp8.Infrastructure
 {
     public class AgresivityCalculator: IAgresivityCalculator
     {
+        private readonly Random _random = new Random();
+
         public void AddAcceleration(AccelerometerReading acceleration)
         {
-            
         }
 
         public void AddGpsData(GeoCoordinate geoCoordinate)
         {
-            
         }
 
         public int Agresivity()
         {
-            return 0;
+            return _random.Next(1, 100);
         }
     }
 }

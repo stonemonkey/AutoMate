@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using System.Xml.Linq;
+using System.Xml;
+using DataAccess;
 using Dto;
 using WebUI.Models;
 
@@ -9,54 +11,101 @@ namespace WebUI.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IRepository repository;
+
+        public HomeController()
+        {
+            repository = new Repository();
+        }
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public XmlActionResult GetRoKmlData()
+        public string GetBingMapsAuthKey()
         {
-            return new XmlActionResult(XDocument.Load(Server.MapPath("~/Data/ro.kml")));
+            return Configuration.BingMapsAuthenticationKey;
         }
 
-        public ActionResult GetLocationAgresivtyRates()
+        public JsonResult GetStartEndDate()
         {
-            var agresivityRatesByDistrict = GetDistrictAgresivityRates();
+            var endDate = repository.GetUsersStatistisc().Max(x => x.DateTime);
+            var startDate = repository.GetUsersStatistisc().Min(x => x.DateTime);
 
-            return Json(agresivityRatesByDistrict, JsonRequestBehavior.AllowGet);
-        }
-
-        private List<ClientStatistics> GetDistrictAgresivityRates()
-        {
-            //TODO - This info will be taken from DB 
-            var agresivityRates = new List<ClientStatistics>
+            return Json(new
                 {
-                    new ClientStatistics {Location = "Sibiu", AgresivityRate = 70},
-                    new ClientStatistics {Location = "Fagaras", AgresivityRate = 70},
-                    new ClientStatistics {Location = "Arad", AgresivityRate = 70},
-                    new ClientStatistics {Location = "Satu Mare", AgresivityRate = 6},
-                    new ClientStatistics {Location = "Timisoara", AgresivityRate = 90},
-                    new ClientStatistics {Location = "Cluj - Napoca", AgresivityRate = 26},
-                    new ClientStatistics {Location = "Constanta", AgresivityRate = 100}
-                };
+                    StartDate = startDate.ToString("yyyy-MM-dd"),
+                    EndDate = endDate.ToString("yyyy-MM-dd")
+                }, JsonRequestBehavior.AllowGet);
+        }
 
-            var agresivityRatesByDistrict = (from clientStatisticse in agresivityRates
-                                             let districtName =
-                                                 Location2County.GetLocationAdminDistrictName(clientStatisticse.Location)
-                                             where !string.IsNullOrEmpty(districtName)
-                                             select new ClientStatistics
+        public JsonResult GetBoundaries()
+        {
+            var xml = new XmlDocument();
+            xml.Load(Server.MapPath("~/Data/ro.kml"));
+            var counties = new List<County>();
+            foreach (XmlNode xNode in xml.SelectNodes("descendant::Placemark"))
+            {
+                var coordinates = xNode.SelectNodes("descendant::coordinates")[0].InnerText.Split(new char[] { '\n', '\r' }).Where(s => s.IndexOf(',') > 0).ToList();
+                var county = new County
+                {
+                    Name = xNode.SelectNodes("name")[0].InnerText,
+                    Locations = coordinates.Select(f => new Location
+                    {
+                        Latitude = float.Parse(f.Trim().Split(',')[1]),
+                        Longitude = float.Parse(f.Trim().Split(',')[0])
+                    }).ToList()
+                };
+                counties.Add(county);
+            }
+
+            return Json(counties, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetStatistics(DateTime startDate, DateTime endDate)
+        {
+            var statistics = new Statistics
+            {
+                BingMapAuthKey = Configuration.BingMapsAuthenticationKey,
+                ClientStatisticses = GetDistrictAgresivityRates(startDate, endDate),
+                Counties = null
+            };
+
+            return Json(statistics, JsonRequestBehavior.AllowGet);
+        }
+
+        private List<ClientStatistics> GetDistrictAgresivityRates(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                var userStatistics =
+                        (from userStatistic in repository.GetUsersStatistisc()
+                         where userStatistic.DateTime >= startDate && userStatistic.DateTime <= endDate
+                         group userStatistic by userStatistic.Location into grouping
+                         select new ClientStatistics
+                         {
+                             Location = grouping.Key,
+                             AgresivityRate = (int)grouping.Average(c => c.AgresivityRate)
+                         }).ToList();
+
+                var agresivityRatesByDistrict = (from clientStatisticse in userStatistics
+                                                 let districtName =
+                                                     Location2County.GetLocationAdminDistrictName(clientStatisticse.Location)
+                                                 where !string.IsNullOrEmpty(districtName)
+                                                 select new ClientStatistics
                                                  {
                                                      AgresivityRate = clientStatisticse.AgresivityRate,
                                                      Location = districtName
                                                  }).ToList();
-            return agresivityRatesByDistrict;
+                return agresivityRatesByDistrict;
+            }
+            catch (Exception)
+            {
+
+            }
+            return new List<ClientStatistics>();
         }
 
-
-        public string BingMapsAuthenticationKey()
-        {
-            return Configuration.BingMapsAuthenticationKey;
-        }
     }
 }
