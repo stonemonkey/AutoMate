@@ -15,32 +15,32 @@ namespace Ui.Wp8.Infrastructure
 
         public void SetGood()
         {
-            Update(Colors.Green, "Good Driving!", RegularIcon, RegularIcon);
+            Update(Colors.Green, "Good Driving!", RegularIcon);
         }
 
         public void SetSpeeding()
         {
-            Update(Colors.Red, "Speeding!", WarningIcon, WarningIcon);
+            Update(Colors.Red, "Speeding!", WarningIcon);
         }
 
         public void SetHighAcceleration()
         {
-            Update(Colors.Green, "High Acceleration!", WarningIcon, WarningIcon);
+            Update(Colors.Green, "High Acceleration!", WarningIcon);
         }
 
         public void SetAbruptBreaking()
         {
-            Update(Colors.Orange, "Abrupt Breaking!", WarningIcon, WarningIcon);
+            Update(Colors.Orange, "Abrupt Breaking!", WarningIcon);
         }
 
-        private void Update(Color backgroundColor, string message, Uri icon, Uri smallIcon)
+        private void Update(Color backgroundColor, string message, Uri icon)
         {
             IconicTileData TileData = new IconicTileData()
             {
                 WideContent1 = message,
                 BackgroundColor = backgroundColor,
                 IconImage = icon,
-                SmallIconImage = smallIcon
+                SmallIconImage = icon
             };
             ShellTile.ActiveTiles.First().Update(TileData);
         }
