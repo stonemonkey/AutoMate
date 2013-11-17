@@ -26,7 +26,10 @@ namespace Ui.Wp8.Components.MainPage
             INavigationService navigationService, UserContextViewModel userContext, StatisticsViewModel statistics)
                 : base(navigationService)
         {
-            _serviceProxy = new WebServiceProxy("http://localhost:27196/Automated/");
+            _serviceProxy = new WebServiceProxy("http://automatewebui.azurewebsites.net/api/automate")
+            {
+                Encoder = new JsonEncoder()
+            };
             _userContext = userContext;
             _statistics = statistics;
         }
@@ -42,19 +45,25 @@ namespace Ui.Wp8.Components.MainPage
             base.OnActivate();
 
             var response = await SendStatistics();
-            if (response.StartsWith("HTTP/1.1 2"))
+            if (ContainsError(response))
             {
-                _statistics.MarkAsSent();
+                //_statistics.MarkAsSent();
             }
+        }
+
+        private static bool ContainsError(string response)
+        {
+            return !string.IsNullOrEmpty(response) &&
+                   !response.StartsWith("HTTP/1.1 2");
         }
 
         private async Task<string> SendStatistics()
         {
             var clientStatistics = new ClientStatistics
             {
-                AgresivityRate = _statistics.Agresivity,
-                EmailAddress = _userContext.Email,
-                Location = _userContext.Location,
+                AgresivityRate = 90, //_statistics.Agresivity,
+                EmailAddress = "test@test.com", //_userContext.Email,
+                Location = "Lespezi", //_userContext.Location,
             };
 
             return await _serviceProxy.Post(clientStatistics);

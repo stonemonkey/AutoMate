@@ -17,14 +17,14 @@ namespace Ui.Wp8
 
             _container.RegisterPhoneServices(RootFrame);
 
-            _container.PerRequest<WebServiceProxy>();
-            _container.PerRequest<AgresivityCalculator>();
+            _container.Singleton<UserContextViewModel>();
             
+            _container.PerRequest<AgresivityCalculator>();
+
             _container.PerRequest<MainPageViewModel>();
             _container.PerRequest<RecordingPageViewModel>();
             _container.PerRequest<AccelerationViewModel>();
             _container.PerRequest<GpsDataViewModel>();
-            _container.PerRequest<UserContextViewModel>();
             _container.PerRequest<StatisticsViewModel>();
         }
 
