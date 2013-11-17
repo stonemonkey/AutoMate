@@ -1,6 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Net;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 using Dto;
 
 namespace Ui.Wp8.Infrastructure
@@ -8,6 +8,9 @@ namespace Ui.Wp8.Infrastructure
     public class WebServiceProxy
     {
         private readonly string _uri;
+        private IClientStatisticsEncoder _encoder;
+
+        public IClientStatisticsEncoder Encoder { set { _encoder = value; } }
 
         public WebServiceProxy(string uri)
         {
@@ -16,25 +19,18 @@ namespace Ui.Wp8.Infrastructure
 
         public async Task<string> Post(ClientStatistics clientStatistics)
         {
-            await Task.Delay(1500);
-            return "HTTP/1.1 200 OK ...";
-            //return "HTTP/1.1 300 ...";
+            try
+            {
+                var data = _encoder.Encode(clientStatistics);
 
-            //var xml = Xml(clientStatistics);
-
-            //var client = new WebClient();
-            //client.Headers[HttpRequestHeader.ContentType] = "application/xml";
-            //return await client.UploadStringTaskAsync(new Uri(_uri), "POST", xml);
-        }
-
-        private static string Xml(ClientStatistics clientStatistics)
-        {
-            var stream = new StringWriter();
-            var serializer = new XmlSerializer(typeof (ClientStatistics));
-            
-            serializer.Serialize(stream, clientStatistics);
-            
-            return stream.ToString();
+                var client = new WebClient();
+                client.Headers[HttpRequestHeader.ContentType] = _encoder.ContentType;
+                return await client.UploadStringTaskAsync(new Uri(_uri), "POST", data);
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
     }
 }
