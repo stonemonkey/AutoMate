@@ -97,10 +97,6 @@ function clearColors() {
 
 function getMap() {
     
-    //$('.preloader').show();
-
-   
-    
     $.ajax({
         type: "GET",
         datatype: 'json',
@@ -124,11 +120,9 @@ function getMap() {
                 } else {
                     console.log("NOF " + item.Location);
                 }
-                
             });
         },
         complete: function () {
-            //$('.preloader').hide();
         }
     });
 }
