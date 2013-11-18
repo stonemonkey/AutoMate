@@ -17,7 +17,7 @@ namespace Ui.Wp8.Infrastructure
             _dbProvider = dbProvider;
         }
 
-        public async Task<ClientStatistics> Fetch(string email)
+        public ClientStatistics Fetch(string email)
         {
             var filename = _dbProvider.BuildDbName(email);
 
@@ -32,15 +32,14 @@ namespace Ui.Wp8.Infrastructure
                 
                 var serializer = new XmlSerializer(typeof (ClientStatistics));
                 
-                return await new Task<ClientStatistics>(() =>
-                {
+                //return await new Task<ClientStatistics>(() =>
+                //{
                     var statistics = (ClientStatistics) serializer.Deserialize(reader);
                     
                     reader.Close();
                     
                     return statistics;
-                });
-
+                //});
             }
         }
         
@@ -51,7 +50,7 @@ namespace Ui.Wp8.Infrastructure
 
             using (IsolatedStorageFile store = IsolatedStorageFile.GetUserStoreForApplication())
             {
-                using (var writer = new StreamWriter(store.OpenFile(filename, FileMode.CreateNew, FileAccess.Write)))
+                using (var writer = new StreamWriter(store.OpenFile(filename, FileMode.Create, FileAccess.Write)))
                 {
                     await writer.WriteAsync(encoder.Encode(statistics));                        
                 }

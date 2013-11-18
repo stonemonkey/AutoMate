@@ -1,25 +1,29 @@
 ﻿using System.Windows;
 using Caliburn.Micro;
+using Ui.Wp8.Components.MainPage;
 
 namespace Ui.Wp8.Components.RecordingPage
 {
     public class RecordingPageViewModel : PageViewModelBase
     {
+        private readonly MainPageViewModel _mainViewModel;
         public AccelerationViewModel AccelerationViewModel { get; private set; }
         public GpsDataViewModel GpsDataViewModel { get; private set; }
 
-        public RecordingPageViewModel(INavigationService navigationService, 
+        public RecordingPageViewModel(INavigationService navigationService, MainPageViewModel mainViewModel,
             AccelerationViewModel accelerationViewModel, GpsDataViewModel gpsDataViewModel)
                 : base(navigationService)
         {
+            _mainViewModel = mainViewModel;
             AccelerationViewModel = accelerationViewModel;
             GpsDataViewModel = gpsDataViewModel;
         }
 
-        public void Stop()
+        public async void Stop()
         {
             if (IsActiveUserOkToStopRecording())
             {
+                await _mainViewModel.Init();
                 NavigationService.GoBack();
             }
         }

@@ -46,9 +46,9 @@ namespace Ui.Wp8.Components.MainPage
             IsUnsent = false;
         }
 
-        public async Task Initialize()
+        public void Initialize()
         {
-            Data = await _statisticsRepository.Fetch(_userContext.Email) ?? DefaultStatisctics();
+            Data = _statisticsRepository.Fetch(_userContext.Email) ?? DefaultStatisctics();
         }
 
         private ClientStatistics DefaultStatisctics()

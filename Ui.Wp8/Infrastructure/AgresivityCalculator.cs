@@ -3,8 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Device.Location;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ui.Wp8.Components.MainPage;
 using Windows.Devices.Sensors;
 
@@ -12,18 +10,20 @@ namespace Ui.Wp8.Infrastructure
 {
     public class AgresivityCalculator: IAgresivityCalculator
     {
-        public int Agresivity { get; private set; }
+        private const double SpeedLimit = 36;
+        private const double MaxAcceleration = 2;
+        private const int AgresivityDecreaseAmount = 1;
 
-        StatisticsRepository _repository;
-        UserContextViewModel _userContext;  
+        private readonly StatisticsRepository _repository;
+        private readonly UserContextViewModel _userContext;
 
-        List<AccelerometerReading> _accelerations;
+        private readonly List<AccelerometerReading> _accelerations;
 
-        private readonly double _maxAcceleration = 2;
-        private readonly TimeSpan _accelerationCheckInterval = TimeSpan.FromSeconds(5);
-        private readonly double _speedLimit = 36;
+        private readonly TimeSpan _accelerationCheckInterval = TimeSpan.FromSeconds(3);
         private readonly TimeSpan _timeRequiredToDecreaseAgresivity = TimeSpan.FromMinutes(10);
-        private readonly int _agresivityDecreaseAmount = 1;
+        private DateTime _lastIncidentDate;
+
+        public int Agresivity { get; private set; }
 
         public AgresivityCalculator(StatisticsRepository repository, UserContextViewModel userContext)
         {
@@ -34,30 +34,36 @@ namespace Ui.Wp8.Infrastructure
 
         public void AddGpsData(GeoCoordinate geoCoordinate)
         {
-            if (geoCoordinate.Speed > _speedLimit)
+            if (geoCoordinate.Speed < SpeedLimit)
             {
-                Agresivity += GetSpeedingPenalty(geoCoordinate.Speed);
-                PersistData();
+                DecreaseAgresivityIfDrivingGoodForRequiredAmountOfTime();
+                return;
             }
+
+            Agresivity += GetSpeedingPenalty();
+            _lastIncidentDate = DateTime.Now;
+            PersistData();
         }
 
         public void AddAcceleration(AccelerometerReading acceleration)
         {
-            if (AbsoluteValue(acceleration) < _maxAcceleration)
+            if (AbsoluteValue(acceleration) < MaxAcceleration)
             {
+                DecreaseAgresivityIfDrivingGoodForRequiredAmountOfTime();
                 return;
             }
 
             _accelerations.Add(acceleration);
             if (IsEraticAccelerationPeriodExceeded())
             {
-                Agresivity += GetEraticAccelerationPenalty(acceleration);
+                Agresivity += GetEraticAccelerationPenalty();
                 _accelerations.Clear();
+                _lastIncidentDate = DateTime.Now;
                 PersistData();
             }
         }
 
-        private double AbsoluteValue(AccelerometerReading acceleration)
+        private static double AbsoluteValue(AccelerometerReading acceleration)
         {
             return acceleration.AccelerationX * acceleration.AccelerationX + 
                 acceleration.AccelerationY * acceleration.AccelerationY + 
@@ -66,28 +72,48 @@ namespace Ui.Wp8.Infrastructure
 
         private bool IsEraticAccelerationPeriodExceeded()
         {
-            return _accelerations.First().Timestamp - _accelerations.Last().Timestamp >= _accelerationCheckInterval;
+            return _accelerations.Last().Timestamp - _accelerations.First().Timestamp >= _accelerationCheckInterval;
         }
 
-        private int GetEraticAccelerationPenalty(AccelerometerReading acceleration)
+        private bool IsGoodDrivingPeriodReached()
+        {
+            return DateTime.Now - _lastIncidentDate > _timeRequiredToDecreaseAgresivity;
+        }
+
+        private static int GetEraticAccelerationPenalty()
         {
             return 10;
         }
 
-        private int GetSpeedingPenalty(double speed)
+        private static int GetSpeedingPenalty()
         {
             return 10;
         }
 
-        private async void PersistData(){
+        private void DecreaseAgresivityIfDrivingGoodForRequiredAmountOfTime()
+        {
+            if (IsGoodDrivingPeriodReached())
+            {
+                Agresivity -= AgresivityDecreaseAmount;
+            }
+        }
+
+        private async void PersistData()
+        {
+            Agresivity = (int) Math.Abs(Agresivity);
+            if (Agresivity <= 0)
+                Agresivity = 1;
+            if (Agresivity > 100)
+                Agresivity = 100;
+
             var clientStatistics = new ClientStatistics
             {
                 EmailAddress = _userContext.Email,
                 Location = _userContext.Location,
-                AgresivityRate = Agresivity
+                AgresivityRate = Agresivity,
             };
 
             await _repository.Persist(clientStatistics);
-        }
+        }        
     }
 }

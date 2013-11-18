@@ -11,7 +11,7 @@ namespace Ui.Wp8.Components.MainPage
         public UserContextViewModel()
         {
             Email = "test@test.com";
-            Location = "Brăila";
+            Location = "Selimbar";
         }
     }
 }

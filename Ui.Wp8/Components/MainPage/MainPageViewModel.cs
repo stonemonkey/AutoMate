@@ -45,7 +45,12 @@ namespace Ui.Wp8.Components.MainPage
         {
             base.OnActivate();
 
-            await _statistics.Initialize();
+            await Init();
+        }
+
+        public async Task Init()
+        {
+            _statistics.Initialize();
 
             if (_statistics.IsUnsent && IsNetworkAvailable())
             {
