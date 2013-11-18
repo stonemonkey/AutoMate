@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
-using Dto;
+using Common;
 using System.Threading.Tasks;
 
 namespace Ui.Wp8.Infrastructure

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using Dto;
+using Common;
 using Ui.Wp8.Infrastructure;
 
 namespace Ui.Wp8.Components.MainPage

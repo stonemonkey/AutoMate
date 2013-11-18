@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui.Wp8", "Ui.Wp8\Ui.Wp8.csproj", "{60AA88D5-8659-4680-907B-55D9445D2B8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui.Web", "WebUI\Ui.Web.csproj", "{5BBFF3EA-F383-44E1-B6DF-83FC267A6DB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ui.Web", "Ui.Web\Ui.Web.csproj", "{5BBFF3EA-F383-44E1-B6DF-83FC267A6DB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{F4D51D99-A8FB-4F83-B6F0-B770BDC28BB2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Ef", "DataAccess.Ef\DataAccess.Ef.csproj", "{F4D51D99-A8FB-4F83-B6F0-B770BDC28BB2}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AutomateDatabase", "AutomateDatabase\AutomateDatabase.sqlproj", "{F6B10F9E-428B-4601-A03F-1A27CB851434}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{F6B10F9E-428B-4601-A03F-1A27CB851434}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Dto\Common.csproj", "{ED4C7D20-D82E-4C23-9E35-557E7831F9FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{ED4C7D20-D82E-4C23-9E35-557E7831F9FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

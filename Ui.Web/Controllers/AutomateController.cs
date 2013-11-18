@@ -5,7 +5,7 @@ using System.Web.Http;
 using DataAccess.Ef;
 using Common;
 
-namespace Api.Web.Controllers
+namespace Ui.Web.Controllers
 {
     public class AutomateController : ApiController
     {

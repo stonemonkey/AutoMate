@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading.Tasks;
-using Dto;
+using Common;
 using System.IO;
 
 namespace Ui.Wp8.Infrastructure
@@ -18,6 +18,12 @@ namespace Ui.Wp8.Infrastructure
             _uri = uri;
         }
 
+        //POST /api/automate HTTP/1.1
+        //Host: automatewebui.azurewebsites.net
+        //Cache-Control: no-cache
+        //Content-Type: application/x-www-form-urlencoded
+        //
+        //EmailAddress=jm_aba%40ahoo.com&Location=Lehliu&AgresivityRate=99
         public async Task<string> Post(ClientStatistics clientStatistics)
         {
             try

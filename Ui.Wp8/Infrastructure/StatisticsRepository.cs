@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
-using Dto;
+using Common;
 using System.IO.IsolatedStorage;
 using System.IO;
 

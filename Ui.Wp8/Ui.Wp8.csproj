@@ -314,7 +314,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dto\Common.csproj">
+    <ProjectReference Include="..\Common\Common.csproj">
       <Project>{ED4C7D20-D82E-4C23-9E35-557E7831F9FF}</Project>
       <Name>Common</Name>
     </ProjectReference>
