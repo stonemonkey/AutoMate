@@ -314,9 +314,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Dto\Dto.csproj">
+    <ProjectReference Include="..\Dto\Common.csproj">
       <Project>{ED4C7D20-D82E-4C23-9E35-557E7831F9FF}</Project>
-      <Name>Dto</Name>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />

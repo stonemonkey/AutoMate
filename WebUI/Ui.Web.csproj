@@ -303,9 +303,9 @@
       <Project>{f4d51d99-a8fb-4f83-b6f0-b770bdc28bb2}</Project>
       <Name>DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dto\Dto.csproj">
+    <ProjectReference Include="..\Dto\Common.csproj">
       <Project>{ed4c7d20-d82e-4c23-9e35-557e7831f9ff}</Project>
-      <Name>Dto</Name>
+      <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
